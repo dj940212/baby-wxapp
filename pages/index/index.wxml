@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="main">
+  <button bindtap='didPressChooesImage'>上传图片</button>
+  <button bindtap='didPressChooesVideo'>上传视频</button>
+
+  <view class="image-container">
+    <image class="image" src="{{imageObject.imageURL}}" mode="aspectFit"></image>
+    <video id="myVideo" src="{{videoSrc}}" enable-danmu danmu-btn controls></video>
+  </view>
+  
+  <view class="data">
+    hash: <text>{{imageObject.hash}}\n\n</text>
+    key: <text>{{imageObject.key}}\n\n</text>
+    imageURL: <text>{{imageObject.imageURL}}</text>
+  </view>
+</view>
