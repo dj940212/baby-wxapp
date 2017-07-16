@@ -1,16 +1,9 @@
-<!--index.wxml-->
+<import src='video-item/video-item.wxml'/>
+<import src='photo-item/photo-item.wxml'/>
 <view class="main">
-  <button bindtap='didPressChooesImage'>上传图片</button>
-  <button bindtap='didPressChooesVideo'>上传视频</button>
-
-  <view class="image-container">
-    <image class="image" src="{{imageObject.imageURL}}" mode="aspectFit"></image>
-    <video id="myVideo" src="{{videoSrc}}" enable-danmu danmu-btn controls></video>
-  </view>
-  
-  <view class="data">
-    hash: <text>{{imageObject.hash}}\n\n</text>
-    key: <text>{{imageObject.key}}\n\n</text>
-    imageURL: <text>{{imageObject.imageURL}}</text>
-  </view>
+  <text class="btn" bindtap='didPressChooesImage'>上传图片</text>
+  <text class="btn" bindtap='didPressChooesVideo'>上传视频</text>
+  <view wx:for="{{photoVideoList}}" wx:for-item="item"> 
+    <template is="{{item.type === 'photo' ? 'photo-item' : 'video-item'}}" data="{{...item}}"/>
+  </view> 
 </view>

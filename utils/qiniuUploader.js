@@ -98,8 +98,8 @@ function doUpload(filePath, type, success, fail, options) {
             // console.log(dataObject);
             if (success) {
                 success(dataObject);
-                console.log("djdj",dataObject)
-                savePhotoVideoInfo(dataObject.imageURL,type)
+                console.log("object",dataObject)
+                savePhotoVideoInfo(dataObject,type)
             }
         },
         fail: function (error) {
@@ -109,6 +109,31 @@ function doUpload(filePath, type, success, fail, options) {
             }
         }
     })
+}
+
+// 保存照片信息到数据库
+function savePhotoVideoInfo(photoVideoInfo,type){
+  wx.request({
+    url: 'http://localhost:1234/api/photoVideo/save',
+    method: 'POST',
+    data: {
+        photoVideoUrl: photoVideoInfo.imageURL,
+        type: type,
+        thumbnailUrl: photoVideoInfo.hash ? 'http://ot2nmqx5r.bkt.clouddn.com/Q9GLAFFqfCrYF6YfQAcON4w4Ezs=/'+photoVideoInfo.hash :'',
+        accessToken: '8591137c-ff1c-4565-bf1f-19a540acde1b'
+    },
+    header: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    success: function (res) {
+      console.log('保存'+type+'到数据库成功')
+      console.log(res)
+    },
+    fail: function (error) {
+      console.log(error);
+    }
+  })
+
 }
 
 // 获取七牛签名
@@ -138,29 +163,6 @@ function getQiniuToken(type, callback) {
       console.log(error);
     }
   })
-}
-
-// 保存照片信息到数据库
-function savePhotoVideoInfo(photoVideoUrl,type){
-  wx.request({
-    url: 'http://localhost:1234/api/photoVideo/save',
-    method: 'POST',
-    data: {
-        photoVideoUrl: photoVideoUrl,
-        type: type,
-        accessToken: '8591137c-ff1c-4565-bf1f-19a540acde1b'
-    },
-    header: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    success: function (res) {
-      console.log('保存照片信息到'+type+'数据库成功')
-    },
-    fail: function (error) {
-      console.log(error);
-    }
-  })
-
 }
 
 // 获取地区上传地址

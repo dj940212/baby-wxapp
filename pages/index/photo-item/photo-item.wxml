@@ -1,0 +1,5 @@
+<template name='photo-item'>
+  <view class="photo-item-container">
+    <image id="myimage" mode="widthFix" src="{{photoVideoUrl}}"></image>
+  </view>
+</template>

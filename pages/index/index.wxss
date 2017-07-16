@@ -1,22 +1,20 @@
-/**index.wxss**/
-
-text {
-  word-break: break-all; 
-}
-
+@import 'video-item/video-item.wxss';
 .main {
-  height: 100%;
+  /*height: 100%;*/
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: space-between;
-  padding: 100rpx 0;
+  /*padding: 20rpx 0;*/
   box-sizing: border-box;
 }
 
-.image-container {
-  background-color: #f2f2f2
+image {
+  width: 150px;
 }
+/*video{
+  width: 250px;
+}*/
 
 .data {
   margin: 5px;

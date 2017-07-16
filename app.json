@@ -1,12 +1,15 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/index/video-item/video-item",
+    "pages/index/photo-item/photo-item",
+    "pages/first/first",
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "田京墨",
     "navigationBarTextStyle":"black"
   }
 }

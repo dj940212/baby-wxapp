@@ -1,0 +1,4 @@
+.postItem-container{
+	border: 20rpx solid #000;
+	border-radius: 2rpx;
+}
