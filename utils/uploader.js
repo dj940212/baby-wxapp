@@ -27,29 +27,33 @@ var upload = function(filePath, type, uptoken,options) {
 }
 // 保存照片视屏信息到数据库
 function savePhotoVideoInfo(photoVideoInfo,type,options){
-  wx.request({
-    url: options.savePhotoVideoInfoUrl,
-    method: 'POST',
-    data: {
-        photoVideoUrl: photoVideoInfo.photoVideoUrl,
-        type: type,
-        thumbnailUrl: photoVideoInfo.thumbnailUrl,
-        accessToken: options.accessToken
-    },
-    header: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    success: function (res) {
-      console.log('保存'+type+'到数据库成功',res)
-      getWidthHeight(photoVideoInfo, type, options)
-    },
-    fail: function (error) {
-      console.log(error);
-    }
+  getWidthHeight(photoVideoInfo, type, options,function(){
+    wx.request({
+      url: options.savePhotoVideoInfoUrl,
+      method: 'POST',
+      data: {
+          photoVideoUrl: photoVideoInfo.photoVideoUrl,
+          type: type,
+          thumbnailUrl: photoVideoInfo.thumbnailUrl,
+          accessToken: options.accessToken,
+          width: photoVideoInfo.width,
+          height: photoVideoInfo.height
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        console.log('保存'+type+'到数据库成功',res)
+      },
+      fail: function (error) {
+        console.log(error);
+      }
+    })
   })
+  
 }
 
-function getWidthHeight(photoVideoInfo, type, options) {
+function getWidthHeight(photoVideoInfo, type, options,callback) {
   wx.request({
     url: type === "video" ? photoVideoInfo.photoVideoUrl+'?avinfo': photoVideoInfo.photoVideoUrl+'?imageInfo',
     method: 'GET',
@@ -66,8 +70,7 @@ function getWidthHeight(photoVideoInfo, type, options) {
         console.log(res)
         console.log("图片信息:",photoVideoInfo.width,photoVideoInfo.height)
       }
-      
-
+      callback && callback()
     }
   })
 }
