@@ -12,10 +12,6 @@
 image {
   width: 150px;
 }
-/*video{
-  width: 250px;
-}*/
-
 .data {
   margin: 5px;
 }

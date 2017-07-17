@@ -26,25 +26,7 @@ function init(options) {
     };
     updateConfigWithOptions(options);
 }
-// 初始化配置文件
-function updateConfigWithOptions(options) {
-    if (options.region) {
-        config.qiniuRegion = options.region;
-    } else {
-        console.error('qiniu uploader need your bucket region');
-    }
-    if (options.uptoken) {
-        config.qiniuUploadToken = options.uptoken;
-    } else if (options.uptokenURL) {
-        config.qiniuUploadTokenURL = options.uptokenURL;
-    } else if(options.uptokenFunc) {
-        config.qiniuUploadTokenFunction = options.uptokenFunc;
-    }
-    if (options.domain) {
-        config.qiniuImageURLPrefix = options.domain;
-    }
-}
-
+// 上传
 function upload(filePath, type, success, fail, options) {
     if (null == filePath) {
         console.error('qiniu uploader need filePath to upload');
@@ -66,6 +48,24 @@ function upload(filePath, type, success, fail, options) {
     } else {
         console.error('qiniu uploader need one of [uptoken, uptokenURL, uptokenFunc]');
         return;
+    }
+}
+// 初始化配置文件
+function updateConfigWithOptions(options) {
+    if (options.region) {
+        config.qiniuRegion = options.region;
+    } else {
+        console.error('qiniu uploader need your bucket region');
+    }
+    if (options.uptoken) {
+        config.qiniuUploadToken = options.uptoken;
+    } else if (options.uptokenURL) {
+        config.qiniuUploadTokenURL = options.uptokenURL;
+    } else if(options.uptokenFunc) {
+        config.qiniuUploadTokenFunction = options.uptokenFunc;
+    }
+    if (options.domain) {
+        config.qiniuImageURLPrefix = options.domain;
     }
 }
 
@@ -111,7 +111,7 @@ function doUpload(filePath, type, success, fail, options) {
     })
 }
 
-// 保存照片信息到数据库
+// 保存照片视屏信息到数据库
 function savePhotoVideoInfo(photoVideoInfo,type){
   wx.request({
     url: 'http://localhost:1234/api/photoVideo/save',
@@ -120,7 +120,7 @@ function savePhotoVideoInfo(photoVideoInfo,type){
         photoVideoUrl: photoVideoInfo.imageURL,
         type: type,
         thumbnailUrl: photoVideoInfo.hash ? 'http://ot2nmqx5r.bkt.clouddn.com/Q9GLAFFqfCrYF6YfQAcON4w4Ezs=/'+photoVideoInfo.hash :'',
-        accessToken: '8591137c-ff1c-4565-bf1f-19a540acde1b'
+        accessToken: '489cc410-13a9-4a0a-a73d-33fb0f2e3a6e'
     },
     header: {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -143,7 +143,7 @@ function getQiniuToken(type, callback) {
     method: 'POST',
     data: {
         type: type,
-        accessToken: '8591137c-ff1c-4565-bf1f-19a540acde1b'
+        accessToken: '489cc410-13a9-4a0a-a73d-33fb0f2e3a6e'
     },
     header: {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -151,7 +151,7 @@ function getQiniuToken(type, callback) {
     success: function (res) {
       var token = res.data.data.uptoken;
 
-      console.log("获取七牛签名uptoken"+type+':'+token)
+      console.log("获取七牛签名uptoken:"+type+':'+token)
 
       config.qiniuUploadToken = token;
 

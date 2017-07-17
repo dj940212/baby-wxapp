@@ -7,22 +7,74 @@ Page({
   data: {
     imageObject: {},
     photoVideoList: [],
-    videoSrc: ''
+    videoWidth: 225,
+    videoHeight: 300
   },
   //事件处理函数
   onLoad: function () {
     console.log('onLoad')
     var that = this;
-    getPhotoVideo(that)
+    getPhotoVideo(that);
+
+    wx.getSystemInfo({
+      success: function(res) {
+        var windowWidth = res.windowWidth;
+        var videoHeight = (225/300)*windowWidth;
+
+        console.log("....video-item",res.windowWidth)
+        that.setData({
+         videoWidth: windowWidth,
+         videoHeight: videoHeight
+        })
+      }
+    })
   },
-  didPressChooesImage: function() {
-    var that = this;
-    didPressChooesImage(that);
+  // 选择照片
+  didPressChooesImage:function() {
+    initQiniu();
+    // 微信 API 选文件
+    wx.chooseImage({
+        count: 1,
+        success: function (res) {
+          var filePath = res.tempFilePaths[0];
+          wx.getImageInfo({
+            src: res.tempFilePaths[0],
+            success: function (res) {
+              console.log("res.width",res.width)
+              console.log("res.height",res.height)
+              // 交给七牛上传
+              qiniuUploader.upload(filePath, "photo",(res) => {
+                console.log("上传成功",res)
+              },(error) => {
+                console.error('error: ' + JSON.stringify(error));
+              });
+            }
+          })
+          
+        }
+      }
+    )
   },
-  didPressChooesVideo: function() {
-    var that = this;
-    didPressChooesVideo(that);
-  },
+  // 选择视频
+  didPressChooesVideo:function() {
+    initQiniu();
+    // 微信 API 选视频文件
+    wx.chooseVideo({
+      sourceType: ['album','camera'],
+      maxDuration: 60,
+      camera: 'back',
+      success: function(res) {
+        // 交给七牛上传
+        var filePath = res.tempFilePath;
+        console.log(filePath)
+        qiniuUploader.upload(filePath, "video", (res) => {
+
+        }, (error) => {
+          console.error('error: ' + JSON.stringify(error));
+        });
+      }
+    })
+  }
 });
 
 // 获取照片视频列表
@@ -31,7 +83,7 @@ function getPhotoVideo(that) {
     url: 'http://localhost:1234/api/photoVideo/list',
     method: 'GET',
     data: {
-      accessToken: '8591137c-ff1c-4565-bf1f-19a540acde1b'
+      accessToken: '489cc410-13a9-4a0a-a73d-33fb0f2e3a6e'
     },
     header: {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -59,47 +111,7 @@ function initQiniu() {
   qiniuUploader.init(options);
 }
 
-// 选择照片
-function didPressChooesImage(that) {
-  initQiniu();
-  // 微信 API 选文件
-  wx.chooseImage({
-      count: 1,
-      success: function (res) {
-        var filePath = res.tempFilePaths[0];
-        // 交给七牛上传
-        qiniuUploader.upload(filePath, "photo",(res) => {
-          that.setData({
-            imageObject: res
-          });
-        }, (error) => {
-          console.error('error: ' + JSON.stringify(error));
-        });
-      }
-    }
-    )
-}
 
-// 选择视频
-function didPressChooesVideo(that) {
-  initQiniu();
-  // 微信 API 选视频文件
-  wx.chooseVideo({
-    sourceType: ['album','camera'],
-    maxDuration: 60,
-    camera: 'back',
-    success: function(res) {
-      // 交给七牛上传
-      var filePath = res.tempFilePath;
-      console.log(filePath)
-      qiniuUploader.upload(filePath, "video", (res) => {
-        that.setData({
-          videoSrc: filePath
-        });
-      }, (error) => {
-        console.error('error: ' + JSON.stringify(error));
-      });
-    }
-  })
-}
+
+
 
