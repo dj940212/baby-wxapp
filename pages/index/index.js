@@ -1,11 +1,8 @@
-const qiniuUploader = require("../../utils/qiniuUploader");
-
-//获取应用实例
-var app = getApp()
+var upload = require("../../utils/uploader")
+var config = require("../config.js")
 
 Page({
   data: {
-    imageObject: {},
     photoVideoList: [],
     videoWidth: 225,
     videoHeight: 300
@@ -15,23 +12,9 @@ Page({
     console.log('onLoad')
     var that = this;
     getPhotoVideo(that);
-
-    wx.getSystemInfo({
-      success: function(res) {
-        var windowWidth = res.windowWidth;
-        var videoHeight = (225/300)*windowWidth;
-
-        console.log("....video-item",res.windowWidth)
-        that.setData({
-         videoWidth: windowWidth,
-         videoHeight: videoHeight
-        })
-      }
-    })
   },
   // 选择照片
   didPressChooesImage:function() {
-    initQiniu();
     // 微信 API 选文件
     wx.chooseImage({
         count: 1,
@@ -42,39 +25,34 @@ Page({
             success: function (res) {
               console.log("res.width",res.width)
               console.log("res.height",res.height)
-              // 交给七牛上传
-              qiniuUploader.upload(filePath, "photo",(res) => {
-                console.log("上传成功",res)
-              },(error) => {
-                console.error('error: ' + JSON.stringify(error));
-              });
+              // 获取七牛签名
+              getQiniuToken("photo",function(uptoken) {
+                upload(filePath, "photo", uptoken, config)
+              })
             }
           })
-          
         }
       }
     )
   },
   // 选择视频
   didPressChooesVideo:function() {
-    initQiniu();
-    // 微信 API 选视频文件
     wx.chooseVideo({
       sourceType: ['album','camera'],
       maxDuration: 60,
       camera: 'back',
       success: function(res) {
-        // 交给七牛上传
         var filePath = res.tempFilePath;
         console.log(filePath)
-        qiniuUploader.upload(filePath, "video", (res) => {
-
-        }, (error) => {
-          console.error('error: ' + JSON.stringify(error));
-        });
+        // 获取七牛签名
+        getQiniuToken("video",function(uptoken) {
+          //上传七牛
+          upload(filePath, "video", uptoken, config)
+        })
       }
     })
-  }
+  },
+  
 });
 
 // 获取照片视频列表
@@ -101,15 +79,29 @@ function getPhotoVideo(that) {
   })
 }
 
-// 初始化七牛相关参数
-function initQiniu() {
-  var options = {
-    region: 'SCN', // 华南区
-    uptokenURL: 'http://localhost:1234/api/signature',
-    domain: 'http://ot2nmqx5r.bkt.clouddn.com'
-  };
-  qiniuUploader.init(options);
+// 获取七牛签名
+function getQiniuToken(type,callback) {
+  wx.request({
+    url: config.uptokenURL,
+    method: 'POST',
+    data: {
+        type: type,
+        accessToken: config.accessToken
+    },
+    header: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    success: function (res) {
+      var uptoken = res.data.data.uptoken;;
+      callback && callback(uptoken)
+      console.log("成功获取七牛签名uptoken:"+type+':'+uptoken)
+    },
+    fail: function (error) {
+      console.log(error);
+    }
+  })
 }
+
 
 
 
