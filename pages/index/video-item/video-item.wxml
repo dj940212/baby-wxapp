@@ -1,5 +1,5 @@
 <template name='video-item'>
   <view class="postItem-container">
-    <video  id="myVideo" src="{{photoVideoUrl}}" style="width: {{videoWidth}}px;height: {{videoHeight}}px" objectFit="contain"  poster="{{thumbnailUrl}}"></video>
+    <video  id="myVideo" src="{{photoVideoUrl}}" style="width: {{width}}px;height: {{height}}px" objectFit="contain"  poster="{{thumbnailUrl}}"></video>
   </view>
 </template>

@@ -3,9 +3,7 @@ var config = require("../config.js")
 
 Page({
   data: {
-    photoVideoList: [],
-    videoWidth: 225,
-    videoHeight: 300
+    photoVideoList: []
   },
   //事件处理函数
   onLoad: function () {
@@ -52,7 +50,6 @@ Page({
       }
     })
   },
-  
 });
 
 // 获取照片视频列表
@@ -78,7 +75,6 @@ function getPhotoVideo(that) {
     }
   })
 }
-
 // 获取七牛签名
 function getQiniuToken(type,callback) {
   wx.request({
@@ -101,6 +97,8 @@ function getQiniuToken(type,callback) {
     }
   })
 }
+
+
 
 
 

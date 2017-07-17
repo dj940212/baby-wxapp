@@ -60,14 +60,20 @@ function getWidthHeight(photoVideoInfo, type, options,callback) {
     data: {},
     success: function(res) {
       if (type === "video") {
-        photoVideoInfo.width = res.data.streams[0].width
-        photoVideoInfo.height = res.data.streams[0].height
-        console.log(res)
+        var startWidth = res.data.streams[0].width
+        var startHeight = res.data.streams[0].height
+        var data = calWidthHeight(60000, startWidth ,startHeight)
+        photoVideoInfo.width =  data.endWidth
+        photoVideoInfo.height = data.endHeight
+        
         console.log("视屏信息:",photoVideoInfo.width, photoVideoInfo.height)
       }else{
-        photoVideoInfo.width = res.data.width
-        photoVideoInfo.height = res.data.height
-        console.log(res)
+        var startWidth = res.data.width
+        var startHeight = res.data.height
+        var data = calWidthHeight(60000, startWidth ,startHeight)
+        photoVideoInfo.width =  data.endWidth
+        photoVideoInfo.height = data.endHeight
+
         console.log("图片信息:",photoVideoInfo.width,photoVideoInfo.height)
       }
       callback && callback()
@@ -75,6 +81,16 @@ function getWidthHeight(photoVideoInfo, type, options,callback) {
   })
 }
 
+function calWidthHeight(endArea,startWidth,startHeight) {
+  var  startArea = startWidth * startHeight
+  var index = endArea/startArea
+  var endWidth = Math.sqrt(index) * startWidth
+  var endHeight = Math.sqrt(index) * startHeight
+  return {
+    endWidth: Math.round(endWidth),
+    endHeight: Math.round(endHeight)
+  }
+}
 
 module.exports = upload;
 
