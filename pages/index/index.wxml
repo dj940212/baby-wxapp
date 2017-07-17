@@ -6,4 +6,9 @@
   <view wx:for="{{photoVideoList}}" wx:for-item="item"> 
     <template is="{{item.type === 'photo' ? 'photo-item' : 'video-item'}}" data="{{...item}}"/>
   </view> 
+  <view class="add">
+    <view class="addIcon"></view>
+    <view class="addPhoto"></view>
+    <view class="addVideo"></view>  
+  </view>
 </view>

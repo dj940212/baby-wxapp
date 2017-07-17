@@ -62,7 +62,7 @@ function getWidthHeight(photoVideoInfo, type, options,callback) {
       if (type === "video") {
         var startWidth = res.data.streams[0].width
         var startHeight = res.data.streams[0].height
-        var data = calWidthHeight(60000, startWidth ,startHeight)
+        var data = calWidthHeight(150000, startWidth ,startHeight)
         photoVideoInfo.width =  data.endWidth
         photoVideoInfo.height = data.endHeight
         
@@ -70,7 +70,7 @@ function getWidthHeight(photoVideoInfo, type, options,callback) {
       }else{
         var startWidth = res.data.width
         var startHeight = res.data.height
-        var data = calWidthHeight(60000, startWidth ,startHeight)
+        var data = calWidthHeight(150000, startWidth ,startHeight)
         photoVideoInfo.width =  data.endWidth
         photoVideoInfo.height = data.endHeight
 

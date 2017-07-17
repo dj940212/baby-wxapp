@@ -1,9 +1,10 @@
-@import 'video-item/video-item.wxss';
+@import 'video-item/video-item.wxss'
+@import 'photo-item/photo-item.wxss'
 .main {
   /*height: 100%;*/
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
   justify-content: space-between;
   /*padding: 20rpx 0;*/
   box-sizing: border-box;
@@ -12,6 +13,31 @@
 image {
   width: 150px;
 }
-.data {
-  margin: 5px;
+.addIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  position: fixed;
+  background-color: red;
+  bottom: 20px;
+  right: 30px;
+}
+.addPhoto {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  position: fixed;
+  background-color: red;
+  bottom: 90px;
+  right: 30px;
+}
+
+.addVideo {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  position: fixed;
+  background-color: red;
+  bottom: 160px;
+  right: 30px;
 }
