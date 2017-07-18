@@ -1,4 +1,0 @@
-video{
-	border: 20rpx solid #eee;
-	border-radius: 2rpx;
-}

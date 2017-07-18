@@ -16,10 +16,11 @@ var upload = function(filePath, type, uptoken,options) {
             var dataObject = JSON.parse(res.data);
             var photoVideoUrl = options.domain +'/'+ dataObject.key;
             dataObject.photoVideoUrl = photoVideoUrl
-            dataObject.thumbnailUrl = dataObject.hash ? 'http://ot2nmqx5r.bkt.clouddn.com/Q9GLAFFqfCrYF6YfQAcON4w4Ezs=/'+dataObject.hash :''
+            dataObject.thumbnailUrl = dataObject.hash ? options.domain+'/Q9GLAFFqfCrYF6YfQAcON4w4Ezs=/'+dataObject.hash :''
             // 保存视频照片信息
             savePhotoVideoInfo(dataObject,type,options)
-            console.log("视频照片信息",dataObject)
+            // console.log("视频照片信息",dataObject)
+            console.log(res)
         },fail: function (error) {
             console.log(error);
         }
@@ -43,7 +44,7 @@ function savePhotoVideoInfo(photoVideoInfo,type,options){
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log('保存'+type+'到数据库成功',res)
+        console.log('保存'+type+'到数据库成功')
       },
       fail: function (error) {
         console.log(error);

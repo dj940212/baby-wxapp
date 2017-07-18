@@ -1,5 +1,3 @@
-@import 'video-item/video-item.wxss'
-@import 'photo-item/photo-item.wxss'
 .main {
   /*height: 100%;*/
   display: flex;
@@ -10,8 +8,15 @@
   box-sizing: border-box;
 }
 
-image {
-  width: 150px;
+image{
+    border: 20rpx solid #eee;
+    border-radius: 2rpx;
+    margin-top: 20px;
+}
+video{
+  border: 20rpx solid #eee;
+  border-radius: 2rpx;
+    margin-top: 20px;
 }
 .addIcon {
   width: 60px;

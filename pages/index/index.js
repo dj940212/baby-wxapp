@@ -50,15 +50,31 @@ Page({
       }
     })
   },
+  // 删除文件
+  deletePhotoOrVideo: function(e){
+    console.log(e.currentTarget.dataset.id)
+    var id = e.currentTarget.dataset.id
+    wx.request({
+      url: config.deletePhotoOrVideoUrl,
+      method: 'POST',
+      data: {
+        accessToken: config.accessToken,
+        id:id
+      },
+      success: function(res) {
+        console.log("删除成功")
+      }
+    })
+  }
 });
 
 // 获取照片视频列表
 function getPhotoVideo(that) {
   wx.request({
-    url: 'http://localhost:1234/api/photoVideo/list',
+    url: config.getPhotoVideoUrl,
     method: 'GET',
     data: {
-      accessToken: '489cc410-13a9-4a0a-a73d-33fb0f2e3a6e'
+      accessToken: config.accessToken
     },
     header: {
       "Content-Type": "application/x-www-form-urlencoded"

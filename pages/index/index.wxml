@@ -1,14 +1,15 @@
-<import src='video-item/video-item.wxml'/>
-<import src='photo-item/photo-item.wxml'/>
 <view class="main">
-  <text class="btn" bindtap='didPressChooesImage'>上传图片</text>
-  <text class="btn" bindtap='didPressChooesVideo'>上传视频</text>
-  <view wx:for="{{photoVideoList}}" wx:for-item="item"> 
-    <template is="{{item.type === 'photo' ? 'photo-item' : 'video-item'}}" data="{{...item}}"/>
+  <view wx:for="{{photoVideoList}}" wx:for-item="item" wx:key="*this"> 
+    <view wx:if="{{item.type === 'photo'}}" class="photo-item" >
+      <image id="myimage" data-id="{{item.id}}" mode="aspectFill"  src="{{item.photoVideoUrl}}" bindtap="deletePhotoOrVideo" style="width: 250px;height: 200px"></image>
+    </view>
+    <view wx:if="{{item.type === 'video'}}"  class="video-item">
+      <video  id="myVideo" src="{{item.photoVideoUrl}}" longtab="deletePhotoOrVideo" style="width: 250px;height: 200px" objectFit="contain"  poster="{{item.thumbnailUrl}}"></video>
+    </view>
   </view> 
   <view class="add">
-    <view class="addIcon"></view>
-    <view class="addPhoto"></view>
-    <view class="addVideo"></view>  
+    <view class="addIcon" bindtap="deletePhotoOrVideo"></view>
+    <view class="addPhoto" bindtap='didPressChooesImage'>photo</view>
+    <view class="addVideo" bindtap='didPressChooesVideo'>video</view>  
   </view>
 </view>

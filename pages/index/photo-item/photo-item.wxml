@@ -1,5 +1,0 @@
-<template name='photo-item'>
-  <view class="photo-item-container">
-    <image id="myimage" mode="aspectFill" src="{{photoVideoUrl}}" style="width: 200px;height: 150px"></image>
-  </view>
-</template>
