@@ -63,6 +63,7 @@ Page({
     console.log(e.currentTarget.dataset.index)
     var id = e.currentTarget.dataset.id
     var index = e.currentTarget.dataset.index
+
     wx.request({
       url: config.deletePhotoOrVideoUrl,
       method: 'POST',
@@ -72,15 +73,14 @@ Page({
       },
       success: function(res) {
         console.log("删除成功")
-        console.log(_this)
-        console.log(_this.data.photoVideoList)
-        var arr = _this.data.photoVideoList
-        console.log(arr)
-        arr.splice(index,1)
-        _this.setData({
-          photoVideoList: arr
-        })
       }
+    })
+    var arr = this.data.photoVideoList
+    console.log("arr1",arr)
+    arr.splice(index,1)
+    console.log("arr2",arr)
+    this.setData({
+      photoVideoList:arr
     })
   },
   deleteBox: function() {
