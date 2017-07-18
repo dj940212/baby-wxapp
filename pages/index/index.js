@@ -14,6 +14,7 @@ Page({
   // 选择照片
   didPressChooesImage:function() {
     // 微信 API 选文件
+    var that = this
     wx.chooseImage({
         count: 1,
         success: function (res) {
@@ -25,7 +26,13 @@ Page({
               console.log("res.height",res.height)
               // 获取七牛签名
               getQiniuToken("photo",function(uptoken) {
-                upload(filePath, "photo", uptoken, config)
+                upload(filePath, "photo", uptoken, config,that, function(photoVideoUrl,that){
+                  var list = that.data.photoVideoList;
+                  list.push({photoVideoUrl:photoVideoUrl,type:"photo"})
+                  that.setData({
+                    photoVideoList: list
+                  })
+                })
               })
             }
           })
@@ -52,8 +59,10 @@ Page({
   },
   // 删除文件
   deletePhotoOrVideo: function(e){
-    console.log(e.currentTarget.dataset.id)
+    var _this = this
+    console.log(e.currentTarget.dataset.index)
     var id = e.currentTarget.dataset.id
+    var index = e.currentTarget.dataset.index
     wx.request({
       url: config.deletePhotoOrVideoUrl,
       method: 'POST',
@@ -63,8 +72,19 @@ Page({
       },
       success: function(res) {
         console.log("删除成功")
+        console.log(_this)
+        console.log(_this.data.photoVideoList)
+        var arr = _this.data.photoVideoList
+        console.log(arr)
+        arr.splice(index,1)
+        _this.setData({
+          photoVideoList: arr
+        })
       }
     })
+  },
+  deleteBox: function() {
+
   }
 });
 

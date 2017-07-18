@@ -1,5 +1,5 @@
 // 上传文件
-var upload = function(filePath, type, uptoken,options) {
+var upload = function(filePath, type, uptoken,options,that, callback) {
     console.log("options",options)
     // 区域上传地址
     var url = options.region;
@@ -15,6 +15,9 @@ var upload = function(filePath, type, uptoken,options) {
         success: function (res) {
             var dataObject = JSON.parse(res.data);
             var photoVideoUrl = options.domain +'/'+ dataObject.key;
+
+            callback && callback(photoVideoUrl,that)
+
             dataObject.photoVideoUrl = photoVideoUrl
             dataObject.thumbnailUrl = dataObject.hash ? options.domain+'/Q9GLAFFqfCrYF6YfQAcON4w4Ezs=/'+dataObject.hash :''
             // 保存视频照片信息
@@ -28,30 +31,27 @@ var upload = function(filePath, type, uptoken,options) {
 }
 // 保存照片视屏信息到数据库
 function savePhotoVideoInfo(photoVideoInfo,type,options){
-  getWidthHeight(photoVideoInfo, type, options,function(){
-    wx.request({
-      url: options.savePhotoVideoInfoUrl,
-      method: 'POST',
-      data: {
-          photoVideoUrl: photoVideoInfo.photoVideoUrl,
-          type: type,
-          thumbnailUrl: photoVideoInfo.thumbnailUrl,
-          accessToken: options.accessToken,
-          width: photoVideoInfo.width,
-          height: photoVideoInfo.height
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      success: function (res) {
-        console.log('保存'+type+'到数据库成功')
-      },
-      fail: function (error) {
-        console.log(error);
-      }
-    })
+  wx.request({
+    url: options.savePhotoVideoInfoUrl,
+    method: 'POST',
+    data: {
+        photoVideoUrl: photoVideoInfo.photoVideoUrl,
+        type: type,
+        thumbnailUrl: photoVideoInfo.thumbnailUrl,
+        accessToken: options.accessToken,
+        width: photoVideoInfo.width,
+        height: photoVideoInfo.height
+    },
+    header: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    success: function (res) {
+      console.log('保存'+type+'到数据库成功')
+    },
+    fail: function (error) {
+      console.log(error);
+    }
   })
-  
 }
 
 function getWidthHeight(photoVideoInfo, type, options,callback) {

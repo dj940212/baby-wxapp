@@ -1,14 +1,29 @@
 <view class="main">
   <view wx:for="{{photoVideoList}}" wx:for-item="item" wx:key="*this"> 
     <view wx:if="{{item.type === 'photo'}}" class="photo-item" >
-      <image id="myimage" data-id="{{item.id}}" mode="aspectFill"  src="{{item.photoVideoUrl}}" bindtap="deletePhotoOrVideo" style="width: 250px;height: 200px"></image>
+      <image 
+        id="myimage" 
+        data-id="{{item.id}}"
+        data-index="{{index}}" 
+        mode="aspectFill"  
+        src="{{item.photoVideoUrl}}" 
+        bindlongtap="deletePhotoOrVideo" 
+        style="width: 250px;height: 200px">
+      </image>
     </view>
     <view wx:if="{{item.type === 'video'}}"  class="video-item">
-      <video  id="myVideo" src="{{item.photoVideoUrl}}" longtab="deletePhotoOrVideo" style="width: 250px;height: 200px" objectFit="contain"  poster="{{item.thumbnailUrl}}"></video>
+      <video  
+        id="myVideo" 
+        src="{{item.photoVideoUrl}}" 
+        bindlongtab="deletePhotoOrVideo" 
+        style="width: 250px;height: 200px" 
+        objectFit="contain"  
+        poster="{{item.thumbnailUrl}}">
+      </video>
     </view>
   </view> 
   <view class="add">
-    <view class="addIcon" bindtap="deletePhotoOrVideo"></view>
+    <view class="addIcon"></view>
     <view class="addPhoto" bindtap='didPressChooesImage'>photo</view>
     <view class="addVideo" bindtap='didPressChooesVideo'>video</view>  
   </view>
