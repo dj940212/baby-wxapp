@@ -1,7 +1,7 @@
 <view class="main">
   <view class="container">
     <view class="photoVideoBox">
-      <view wx:for="{{photoVideoList}}" wx:for-item="item" wx:key="*this"> 
+      <view wx:for="{{photoVideoList}}" wx:for-item="item" wx:key="*this" class="item-box"> 
         <view wx:if="{{item.type === 'photo'}}" class="photo-item" >
           <image 
             id="myimage" 
@@ -19,24 +19,22 @@
             src="{{item.photoVideoUrl}}" 
             bindlongtab="selectBox" 
             style="width: 250px;height: 200px" 
-            objectFit="contain"  
+            objectFit="fill"  
             poster="{{item.thumbnailUrl}}">
           </video>
         </view>
-        <view class="data-box" wx:if="{{index%2}}">
+        <view class="tree-item"></view>
+        <view class="date-box" wx:if="{{index%2}}">
           <view class="date"></view>
           <view class="age">1岁 6个月 21天</view>
         </view>
       </view>
     </view>
-    <view class="tree">
-      <view class="tree-item" wx:for="{{3}}"></view>
-    </view>
   </view>
   
 
 
-  <view class="add" wx:if="{{false}}">
+  <view class="add" wx:if="{{true}}">
     <view class="addIcon"></view>
     <view class="addPhoto" bindtap='didPressChooesImage'>photo</view>
     <view class="addVideo" bindtap='didPressChooesVideo'>video</view>  

@@ -44,6 +44,7 @@ Page({
   },
   // 选择视频
   didPressChooesVideo:function() {
+    var that = this
     wx.chooseVideo({
       sourceType: ['album','camera'],
       maxDuration: 60,
@@ -53,8 +54,13 @@ Page({
         console.log(filePath)
         // 获取七牛签名
         getQiniuToken("video",function(uptoken) {
-          //上传七牛
-          upload(filePath, "video", uptoken, config)
+          upload(filePath, "video", uptoken, config,that, function(photoVideoUrl,that){
+            var list = that.data.photoVideoList;
+            list.push({photoVideoUrl:photoVideoUrl,type:"video"})
+            that.setData({
+              photoVideoList: list
+            })
+          })
         })
       }
     })
