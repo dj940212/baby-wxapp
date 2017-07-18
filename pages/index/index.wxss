@@ -46,3 +46,12 @@ video{
   bottom: 160px;
   right: 30px;
 }
+
+.selectBox {
+  width: 60px;
+  height:100px;
+  position: absolute;
+  background-color: red;
+  left: 0;
+  top: 0;
+}

@@ -7,15 +7,16 @@
         data-index="{{index}}" 
         mode="aspectFill"  
         src="{{item.photoVideoUrl}}" 
-        bindlongtap="deletePhotoOrVideo" 
+        bindlongtap="selectBox" 
         style="width: 250px;height: 200px">
       </image>
+
     </view>
     <view wx:if="{{item.type === 'video'}}"  class="video-item">
       <video  
         id="myVideo" 
         src="{{item.photoVideoUrl}}" 
-        bindlongtab="deletePhotoOrVideo" 
+        bindlongtab="selectBox" 
         style="width: 250px;height: 200px" 
         objectFit="contain"  
         poster="{{item.thumbnailUrl}}">
@@ -27,4 +28,5 @@
     <view class="addPhoto" bindtap='didPressChooesImage'>photo</view>
     <view class="addVideo" bindtap='didPressChooesVideo'>video</view>  
   </view>
+  <view class="selectBox" style="left:{{position.left}}px;top:{{position.top}}px"></view>
 </view>

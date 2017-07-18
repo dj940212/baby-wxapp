@@ -3,7 +3,9 @@ var config = require("../config.js")
 
 Page({
   data: {
-    photoVideoList: []
+    photoVideoList: [],
+    selectBoxValue: false,
+    position:{}
   },
   //事件处理函数
   onLoad: function () {
@@ -83,8 +85,12 @@ Page({
       photoVideoList:arr
     })
   },
-  deleteBox: function() {
-
+  selectBox: function(e) {
+    console.log(e.currentTarget)
+    this.setData({
+      position:{left: e.currentTarget.offsetLeft,top:e.currentTarget.offsetTop},
+      selectBoxValue: true
+    })
   }
 });
 
