@@ -1,5 +1,4 @@
-/**app.wxss**/
-.container {
+.contain {
   height: 100%;
   display: flex;
   flex-direction: column;
