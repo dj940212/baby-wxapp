@@ -8,8 +8,8 @@
             data-id="{{item.id}}"
             data-index="{{index}}" 
             mode="aspectFill"  
-            src="{{item.photoVideoUrl}}" 
-            bindlongtap="selectBox" 
+            src="{{item.photoVideoUrl[1]}}" 
+            bindlongtap="deletePhotoOrVideo" 
             style="width: 270px;height: 180px">
           </image>
         </view>
@@ -17,7 +17,7 @@
           <video  
             id="myVideo" 
             src="{{item.photoVideoUrl}}" 
-            bindlongtab="selectBox" 
+            bindlongtab="deletePhotoOrVideo" 
             style="width: 250px;height: 200px" 
             objectFit="fill"  
             poster="{{item.thumbnailUrl}}">
