@@ -18,29 +18,23 @@ Page({
     // 微信 API 选文件
     var that = this
     wx.chooseImage({
-        count: 1,
-        success: function (res) {
-          var filePath = res.tempFilePaths[0];
-          wx.getImageInfo({
-            src: res.tempFilePaths[0],
-            success: function (res) {
-              console.log("res.width",res.width)
-              console.log("res.height",res.height)
-              // 获取七牛签名
-              getQiniuToken("photo",function(uptoken) {
-                upload(filePath, "photo", uptoken, config,that, function(photoVideoUrl,that){
-                  var list = that.data.photoVideoList;
-                  list.push({photoVideoUrl:photoVideoUrl,type:"photo"})
-                  that.setData({
-                    photoVideoList: list
-                  })
-                })
-              })
-            }
-          })
-        }
+      // count: 2,
+      success: function (res) {
+        var filePath = res.tempFilePaths;
+        console.log("选择文件",res)
+        // 获取七牛签名
+        getQiniuToken("photo",function(uptoken) {
+          var uploadOptions = {
+            filePath:filePath,
+            type:"photo",
+            uptoken:uptoken,
+            config:config,
+            that:that
+          }
+          upload(uploadOptions)
+        })
       }
-    )
+    })
   },
   // 选择视频
   didPressChooesVideo:function() {
@@ -138,7 +132,7 @@ function getQiniuToken(type,callback) {
     success: function (res) {
       var uptoken = res.data.data.uptoken;;
       callback && callback(uptoken)
-      console.log("成功获取七牛签名uptoken:"+type+':'+uptoken)
+      console.log("成功获取七牛签名uptoken:"+type)
     },
     fail: function (error) {
       console.log(error);

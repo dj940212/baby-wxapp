@@ -1,34 +1,96 @@
 // 上传文件
-var upload = function(filePath, type, uptoken,options,that, callback) {
-    console.log("options",options)
+function upload(data) {
+    var i=data.i ? data.i:0
+    var success=data.success?data.success:0
+    var fail=data.fail?data.fail:0
     // 区域上传地址
-    var url = options.region;
-    var fileName = filePath.split('//')[1];
+    var url = data.config.region;
+    var fileName = data.filePath[i].split('//')[1];
     wx.uploadFile({
         url: url,
-        filePath: filePath,
+        filePath: data.filePath[i],
         name: 'file',
         formData: {
-          'token': uptoken,
+          'token': data.uptoken,
           'key': fileName
         },
         success: function (res) {
             var dataObject = JSON.parse(res.data);
-            var photoVideoUrl = options.domain +'/'+ dataObject.key;
+            var photoVideoUrl = data.config.domain +'/'+ dataObject.key;
 
-            callback && callback(photoVideoUrl,that)
+            // 修改data值
+            var list = data.that.data.photoVideoList;
+            list.push({photoVideoUrl:photoVideoUrl,type:data.type})
+            data.that.setData({
+              photoVideoList: list
+            })
 
             dataObject.photoVideoUrl = photoVideoUrl
-            dataObject.thumbnailUrl = dataObject.hash ? options.domain+'/Q9GLAFFqfCrYF6YfQAcON4w4Ezs=/'+dataObject.hash :''
+            dataObject.thumbnailUrl = dataObject.hash ? data.config.domain+'/Q9GLAFFqfCrYF6YfQAcON4w4Ezs=/'+dataObject.hash :''
             // 保存视频照片信息
-            savePhotoVideoInfo(dataObject,type,options)
+            savePhotoVideoInfo(dataObject,data.type,data.config)
             // console.log("视频照片信息",dataObject)
-            console.log(res)
-        },fail: function (error) {
-            console.log(error);
+            success++;
+            console.log(i);
+            console.log("上传七牛成功",res)
+        },
+        fail: function (error) {
+            fail++;
+            console.log('fail:'+i+"fail:"+fail);
+        },
+        complete: function() {
+          console.log(i);
+          i++;
+          if(i==data.filePath.length){  //当图片传完时，停止调用     
+            console.log('执行完毕');
+            console.log('成功：'+success+" 失败："+fail);
+          }else{//若图片还没有传完，则继续调用函数
+            console.log(i);
+            data.i=i;
+            data.success=success;
+            data.fail=fail;
+            upload(data);
+          }
         }
     })
 }
+//多张图片上传
+// function myupload(data){
+//   var that=this
+//   var i=data.i?data.i:0
+//   var success=data.success?data.success:0
+//   var fail=data.fail?data.fail:0;
+//   wx.uploadFile({
+//       url: data.url, 
+//       filePath: data.path[i],
+//       name: 'fileData',
+//       formData:null,
+//       success: (resp) => {
+//         success++;
+//         console.log(resp)
+//         console.log(i);
+//         //这里可能有BUG，失败也会执行这里
+//       },
+//       fail: (res) => {
+//         fail++;
+//         console.log('fail:'+i+"fail:"+fail);
+//       },
+//       complete: () => {
+//         console.log(i);
+//         i++;
+//         if(i==data.path.length){  //当图片传完时，停止调用     
+//           console.log('执行完毕');
+//           console.log('成功：'+success+" 失败："+fail);
+//         }else{//若图片还没有传完，则继续调用函数
+//           console.log(i);
+//           data.i=i;
+//           data.success=success;
+//           data.fail=fail;
+//           that.uploadimg(data);
+//         }
+//       }
+//   });
+// }
 // 保存照片视屏信息到数据库
 function savePhotoVideoInfo(photoVideoInfo,type,options){
   wx.request({

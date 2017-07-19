@@ -9,7 +9,7 @@
 .photoVideoBox {
   border-left: 4px solid #fff;
   padding-left: 30px;
-  background: #eee;
+  /*background: #eee;*/
 }
 .item-box{
   position: relative;

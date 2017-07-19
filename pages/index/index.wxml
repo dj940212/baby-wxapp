@@ -10,7 +10,7 @@
             mode="aspectFill"  
             src="{{item.photoVideoUrl}}" 
             bindlongtap="selectBox" 
-            style="width: 250px;height: 200px">
+            style="width: 270px;height: 180px">
           </image>
         </view>
         <view wx:if="{{item.type === 'video'}}"  class="video-item">
@@ -31,9 +31,6 @@
       </view>
     </view>
   </view>
-  
-
-
   <view class="add" wx:if="{{true}}">
     <view class="addIcon"></view>
     <view class="addPhoto" bindtap='didPressChooesImage'>photo</view>
