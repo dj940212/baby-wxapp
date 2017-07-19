@@ -1,6 +1,6 @@
 // 上传文件
 var photoArr = [];
-function upload(data) {
+function uploadPhoto(data) {
     var i=data.i ? data.i:0
     var success=data.success?data.success:0
     var fail=data.fail?data.fail:0
@@ -19,16 +19,6 @@ function upload(data) {
         success: function (res) {
             dataObject = JSON.parse(res.data);
             var photoVideoUrl = data.config.domain +'/'+ dataObject.key;
-
-            
-
-            if (data.type === "video") {
-              dataObject.photoVideoUrl = [photoVideoUrl]
-              dataObject.thumbnailUrl = dataObject.hash ? data.config.domain
-              +'/Q9GLAFFqfCrYF6YfQAcON4w4Ezs=/'+dataObject.hash :''
-              // 保存视频信息
-              savePhotoVideoInfo(dataObject,data.type,data.config)
-            }
             photoArr.push(photoVideoUrl)
             success++;
             console.log("上传七牛成功",i,res)
@@ -58,8 +48,42 @@ function upload(data) {
             data.i=i;
             data.success=success;
             data.fail=fail;
-            upload(data);
+            uploadPhoto(data);
           }
+        }
+    })
+}
+function uploadVideo(data) {
+    // 区域上传地址
+    var url = data.config.region;
+    var fileName = data.filePath.split('//')[1];
+    var videoInfo = {}
+    var photoVideoUrl = ''
+    wx.uploadFile({
+        url: url,
+        filePath: data.filePath,
+        name: 'file',
+        formData: {
+          'token': data.uptoken,
+          'key': fileName
+        },
+        success: function (res) {
+          videoInfo = JSON.parse(res.data);
+          photoVideoUrl = data.config.domain +'/'+ videoInfo.key;
+          videoInfo.photoVideoUrl = photoVideoUrl
+          videoInfo.thumbnailUrl = videoInfo.hash ? data.config.domain+'/Q9GLAFFqfCrYF6YfQAcON4w4Ezs=/'+videoInfo.hash :''
+          var list = data.that.data.photoVideoList;
+          list.push({photoVideoUrl:photoVideoUrl,type:data.type})
+          data.that.setData({
+            photoVideoList: list
+          })
+          // 保存视频信息
+          savePhotoVideoInfo(videoInfo,data.type,data.config)
+        },
+        fail: function (error) {
+            console.log("上传失败",err);
+        },
+        complete: function() {
         }
     })
 }
@@ -127,5 +151,6 @@ function calWidthHeight(endArea,startWidth,startHeight) {
   }
 }
 
-module.exports = upload;
+module.exports.uploadPhoto = uploadPhoto;
+module.exports.uploadVideo = uploadVideo;
 

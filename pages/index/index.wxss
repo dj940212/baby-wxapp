@@ -5,6 +5,7 @@
   justify-content: space-between;
   box-sizing: border-box;
   background: #eee;
+  width: 100%;
 }
 .photoVideoBox {
   border-left: 4px solid #fff;

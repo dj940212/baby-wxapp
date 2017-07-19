@@ -9,9 +9,9 @@ Page({
   },
   //事件处理函数
   onLoad: function () {
-    console.log('onLoad')
+    console.log('onLoad',this)
     var that = this;
-    getPhotoVideo(that);
+    getApp().getPhotoVideo(that);
   },
   // 选择照片
   didPressChooesImage:function() {
@@ -31,7 +31,7 @@ Page({
             config:config,
             that:that
           }
-          upload(uploadOptions)
+          upload.uploadPhoto(uploadOptions)
         })
       }
     })
@@ -48,13 +48,14 @@ Page({
         console.log(filePath)
         // 获取七牛签名
         getQiniuToken("video",function(uptoken) {
-          upload(filePath, "video", uptoken, config,that, function(photoVideoUrl,that){
-            var list = that.data.photoVideoList;
-            list.push({photoVideoUrl:photoVideoUrl,type:"video"})
-            that.setData({
-              photoVideoList: list
-            })
-          })
+          var uploadOptions = {
+            filePath:filePath,
+            type:"video",
+            uptoken:uptoken,
+            config:config,
+            that:that
+          }
+          upload.uploadVideo(uploadOptions)
         })
       }
     })
@@ -65,6 +66,8 @@ Page({
     console.log(e.currentTarget.dataset.index)
     var id = e.currentTarget.dataset.id
     var index = e.currentTarget.dataset.index
+    console.log("id",id)
+    console.log("index",index)
 
     wx.request({
       url: config.deletePhotoOrVideoUrl,
@@ -85,6 +88,10 @@ Page({
       photoVideoList:arr
     })
   },
+  // 跳转到photoDetail页
+  toPhotoDetail: function(e){
+    getApp().doToPhotoDetail(e)
+  },
   selectBox: function(e) {
     console.log(e.currentTarget)
     this.setData({
@@ -94,29 +101,6 @@ Page({
   }
 });
 
-// 获取照片视频列表
-function getPhotoVideo(that) {
-  wx.request({
-    url: config.getPhotoVideoUrl,
-    method: 'GET',
-    data: {
-      accessToken: config.accessToken
-    },
-    header: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    success: function (res) {
-      console.log("获取照片和视频车成功")
-      console.log(res.data.data)
-      that.setData({
-        photoVideoList: res.data.data
-      });
-    },
-    fail: function (error) {
-      console.log(error);
-    }
-  })
-}
 // 获取七牛签名
 function getQiniuToken(type,callback) {
   wx.request({
