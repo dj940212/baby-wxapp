@@ -9,9 +9,12 @@
         duration="{{duration}}"
         style="height: {{swiperHeight}}px">
         <block wx:for="{{imgUrls}}">
-          <swiper-item>
-            <image src="{{item}}" class="swiper-item" mode="widthFix" ></image>
+          <swiper-item class="swiper-box">
+            <image src="{{item}}" class="swiper-item" mode="widthFix" bindtap="back"></image>
           </swiper-item>
+          <view class="content" >
+            <text class="text">啊gas高发时段gas各方面萨芬撒反抗拉萨分as发射点发啊gas高发时段gas各方面萨芬撒反抗拉萨分as发射点发啊gas高发时段gas各</text>
+          </view>
         </block>
       </swiper>
     </view>

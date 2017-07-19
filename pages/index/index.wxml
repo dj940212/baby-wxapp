@@ -11,7 +11,7 @@
             src="{{item.photoVideoUrl[1]}}" 
             bindlongtap="deletePhotoOrVideo" 
             bindtap="toPhotoDetail"
-            style="width: 270px;height: 180px">
+            style="width: 520rpx;height: 380rpx">
           </image>
         </view>
         <view wx:if="{{item.type === 'video'}}"  class="video-item">
@@ -21,7 +21,7 @@
             data-id="{{item.id}}"
             data-index="{{index}}" 
             bindlongtap="deletePhotoOrVideo" 
-            style="width: 270px;height: 180px" 
+            style="width: 520rpx;height: 380rpx" 
             objectFit="fill"  
             poster="{{item.thumbnailUrl}}">
           </video>
