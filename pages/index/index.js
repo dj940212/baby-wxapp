@@ -31,7 +31,8 @@ Page({
             uptoken:uptoken,
             config:config,
             that:that,
-            app:app
+            app:app,
+            photoArr: []
           }
           upload.uploadPhoto(uploadOptions)
         })

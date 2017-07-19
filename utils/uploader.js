@@ -1,10 +1,9 @@
 // 上传文件
-
-var photoArr = [];
 function uploadPhoto(data) {
     var i=data.i ? data.i:0
     var success=data.success?data.success:0
     var fail=data.fail?data.fail:0
+    var photoArr = data.photoArr ? data.photoArr:0
     // 区域上传地址
     var url = data.config.region;
     var fileName = data.filePath[i].split('//')[1];

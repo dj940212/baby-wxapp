@@ -3,16 +3,18 @@
     <view class="photoVideoBox">
       <view wx:for="{{photoVideoList}}" wx:for-item="item" wx:key="*this" class="item-box"> 
         <view wx:if="{{item.type === 'photo'}}" class="photo-item" >
-          <image 
-            id="myimage" 
-            data-id="{{item.id}}"
-            data-index="{{index}}" 
-            mode="aspectFill"  
-            src="{{item.photoVideoUrl[1]}}" 
-            bindlongtap="deletePhotoOrVideo" 
-            bindtap="toPhotoDetail"
-            style="width: 520rpx;height: 380rpx">
-          </image>
+          <view class="shadow">
+            <image 
+              id="myimage" 
+              data-id="{{item.id}}"
+              data-index="{{index}}" 
+              mode="aspectFill"  
+              src="{{item.photoVideoUrl[0]}}" 
+              bindlongtap="deletePhotoOrVideo" 
+              bindtap="toPhotoDetail"
+              style="width: 520rpx;height: 380rpx">
+            </image>
+          </view>
         </view>
         <view wx:if="{{item.type === 'video'}}"  class="video-item">
           <video  

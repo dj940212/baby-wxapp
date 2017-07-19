@@ -8,64 +8,94 @@
   width: 100%;
 }
 .photoVideoBox {
-  border-left: 4px solid #fff;
-  padding-left: 30px;
+  border-left: 14rpx solid #fff;
+  padding-left: 60rpx;
   /*background: #eee;*/
 }
 .item-box{
   position: relative;
 }
 image{
-    border: 20rpx solid #fff;
-    border-radius: 8rpx;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  border: 20rpx solid #fff;
+  border-radius: 8rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
 }
+/*.shadow{
+  
+  position: relative;
+  
+}*/
+/*.shadow::before {
+  content:'你好啊';
+  position:absolute;
+   z-index:-2; 
+  background:transparent;
+  width:90%;
+  height:80%;
+  left:20px;
+  bottom:8px;
+  transform:skew(-12deg) rotate(-4deg); 
+  box-shadow:0 8px 20px rgba(0,0,0,0.6)
+}*/
+/*.shadow:after{
+  content:'';
+  position:absolute;
+   z-index:-1; 
+  background:transparent;
+  width:90%;
+  height:80%;
+  right:20px;
+  bottom:8px;
+  transform:skew(12deg) rotate(4deg); 
+  box-shadow:0 8px 20px rgba(0,0,0,0.6)
+}*/
 video{
   border: 20rpx solid #fff;
   border-radius: 8rpx;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 .add {
   z-index: 10;
 }
 .addIcon {
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
   position: fixed;
   background-color: #fff;
-  bottom: 20px;
-  right: 30px;
+  bottom: 40rpx;
+  right: 60rpx;
 }
 .addPhoto {
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
   position: fixed;
   background-color: #fff;
-  line-height: 60px;
+  line-height: 120rpx;
   text-align: center;
-  bottom: 90px;
-  right: 30px;
+  bottom: 180rpx;
+  right: 60rpx;
 }
 
 .addVideo {
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
   position: fixed;
   background-color: #fff;
-  line-height: 60px;
+  line-height: 120rpx;
   text-align: center;
-  bottom: 160px;
-  right: 30px;
+  bottom: 320rpx;
+  right: 60rpx;
 }
 
 .selectBox {
-  width: 60px;
-  height:100px;
+  width: 120rpx;
+  height:200rpx;
   position: absolute;
   background-color: red;
   left: 0;
@@ -76,28 +106,28 @@ video{
   flex-direction: row;
 }
 .date {
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
   /*border: 1px solid #999;*/
   background: #fff;
   position: relative;
-  left: -60px;
+  left: -120rpx;
 }
 .age {
-  width: 160px;
-  height: 60px;
+  width: 320rpx;
+  height: 120rpx;
   /*background: red;*/
-  line-height: 60px;
-  font-size: 20px;
+  line-height: 120rpx;
+  font-size: 40rpx;
 }
 
 .tree-item{
-  width: 35px;
-  height: 6px;
+  width: 70rpx;
+  height: 12rpx;
   /*border-top: 6px solid #fff;*/
   background: #fff;
   position: absolute;
-  top: 40px;
-  left: -32px;
+  top: 80rpx;
+  left: -64rpx;
 }
