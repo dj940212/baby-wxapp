@@ -1,4 +1,5 @@
 // 上传文件
+
 var photoArr = [];
 function uploadPhoto(data) {
     var i=data.i ? data.i:0
@@ -40,6 +41,7 @@ function uploadPhoto(data) {
             data.that.setData({
               photoVideoList: list
             })
+            data.app.photoVideoList = list
             
             dataObject.photoVideoUrl = photoArr
             savePhotoVideoInfo(dataObject,data.type,data.config)
@@ -119,19 +121,13 @@ function getWidthHeight(photoVideoInfo, type, options,callback) {
     data: {},
     success: function(res) {
       if (type === "video") {
-        var startWidth = res.data.streams[0].width
-        var startHeight = res.data.streams[0].height
-        var data = calWidthHeight(150000, startWidth ,startHeight)
-        photoVideoInfo.width =  data.endWidth
-        photoVideoInfo.height = data.endHeight
+        photoVideoInfo.width = res.data.streams[0].width
+        photoVideoInfo.height = res.data.streams[0].height
         
         console.log("视屏信息:",photoVideoInfo.width, photoVideoInfo.height)
       }else{
-        var startWidth = res.data.width
-        var startHeight = res.data.height
-        var data = calWidthHeight(150000, startWidth ,startHeight)
-        photoVideoInfo.width =  data.endWidth
-        photoVideoInfo.height = data.endHeight
+        photoVideoInfo.width = res.data.width
+        photoVideoInfo.height = res.data.height
 
         console.log("图片信息:",photoVideoInfo.width,photoVideoInfo.height)
       }

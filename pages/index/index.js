@@ -1,6 +1,6 @@
 var upload = require("../../utils/uploader")
 var config = require("../config.js")
-
+var app = getApp()
 Page({
   data: {
     photoVideoList: [],
@@ -11,7 +11,8 @@ Page({
   onLoad: function () {
     console.log('onLoad',this)
     var that = this;
-    getApp().getPhotoVideo(that);
+    app.getPhotoVideo(that);
+    this.setData({photoVideoList: app.photoVideoList})
   },
   // 选择照片
   didPressChooesImage:function() {
@@ -29,7 +30,8 @@ Page({
             type:"photo",
             uptoken:uptoken,
             config:config,
-            that:that
+            that:that,
+            app:app
           }
           upload.uploadPhoto(uploadOptions)
         })

@@ -1,0 +1,14 @@
+.page{
+  background: #000;
+}
+.swiper-item {
+  width: 100%;
+}
+swiper-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+swiper {
+  
+}

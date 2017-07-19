@@ -21,7 +21,7 @@
             data-id="{{item.id}}"
             data-index="{{index}}" 
             bindlongtap="deletePhotoOrVideo" 
-            style="width: 250px;height: 200px" 
+            style="width: 270px;height: 180px" 
             objectFit="fill"  
             poster="{{item.thumbnailUrl}}">
           </video>
@@ -40,10 +40,4 @@
     <view class="addVideo" bindtap='didPressChooesVideo'>video</view>  
   </view>
   <view wx:if="{{false}}" class="selectBox" style="left:{{position.left}}px;top:{{position.top}}px"></view>
-  <!-- 详情页 -->
-  <view style="width: 100%">
-    <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-      <view id="green" class="scroll-view-item_H bc_green"></view>
-    </scroll-view>
-  </view>
 </view>
