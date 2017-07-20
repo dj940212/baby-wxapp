@@ -10,10 +10,12 @@ Page({
   },
   //事件处理函数
   onLoad: function () {
-    console.log('onLoad',this)
-    var that = this;
-    app.getPhotoVideo(that);
-    // this.setData({photoVideoList: app.photoVideoList})
+    var _this = this
+    app.getPhotoVideo(function(){
+      _this.setData({
+      photoVideoList: app.photoVideoList
+    })
+    });
   },
   onReady: function (res) {
     this.videoContext = wx.createVideoContext('myVideo')

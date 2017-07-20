@@ -25,7 +25,7 @@ App({
     }
   },
   // 获取照片视频列表
-  getPhotoVideo: function (that){
+  getPhotoVideo: function (callback){
     var _this = this
     wx.request({
       url: config.getPhotoVideoUrl,
@@ -39,10 +39,7 @@ App({
       success: function (res) {
         console.log("获取照片和视频车成功",res.data.data)
         _this.photoVideoList = res.data.data
-       
-        that.setData({
-          photoVideoList: res.data.data
-        });
+        callback && callback()
       },
       fail: function (error) {
         console.log(error);
@@ -68,7 +65,8 @@ App({
   },
   photoVideoList: [],
   photoVideoIndex: null,
-  photoFilePath:{}
+  photoFilePath:{},
+  test: 123
 
 })
 
