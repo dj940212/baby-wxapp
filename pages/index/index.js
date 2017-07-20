@@ -19,7 +19,7 @@ Page({
     this.videoContext = wx.createVideoContext('myVideo')
   },
   onPageScroll: function() {
-    console.log("....")
+    // console.log("....")
   },
   // 选择照片
   didPressChooesImage:function() {

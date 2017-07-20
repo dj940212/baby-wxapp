@@ -43,35 +43,6 @@ image{
   color: #000;
   position: absolute;
 }
-/*.shadow{
-  
-  position: relative;
-  
-}*/
-/*.shadow::before {
-  content:'你好啊';
-  position:absolute;
-   z-index:-2; 
-  background:transparent;
-  width:90%;
-  height:80%;
-  left:20px;
-  bottom:8px;
-  transform:skew(-12deg) rotate(-4deg); 
-  box-shadow:0 8px 20px rgba(0,0,0,0.6)
-}*/
-/*.shadow:after{
-  content:'';
-  position:absolute;
-   z-index:-1; 
-  background:transparent;
-  width:90%;
-  height:80%;
-  right:20px;
-  bottom:8px;
-  transform:skew(12deg) rotate(4deg); 
-  box-shadow:0 8px 20px rgba(0,0,0,0.6)
-}*/
 video{
   border: 20rpx solid #fff;
   border-radius: 8rpx;
@@ -96,27 +67,35 @@ video{
   background-size: 100rpx 100rpx;
 }
 .addPhoto {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
   position: fixed;
   background-color: #fff;
-  line-height: 120rpx;
+  line-height: 80rpx;
   text-align: center;
-  bottom: 180rpx;
-  right: 60rpx;
+  bottom: 200rpx;
+  right: 50rpx;
+  background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E7%85%A7%E7%89%87.png);
+  background-size: 50rpx 50rpx;
+  background-repeat: no-repeat;
+  background-position: 14rpx 14rpx;
 }
 
 .addVideo {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
   position: fixed;
   background-color: #fff;
-  line-height: 120rpx;
+  line-height: 80rpx;
   text-align: center;
-  bottom: 320rpx;
-  right: 60rpx;
+  bottom: 300rpx;
+  right: 50rpx;
+  background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E8%A7%86%E9%A2%91.png);
+  background-size: 40rpx 40rpx;
+  background-repeat: no-repeat;
+  background-position: 18rpx 18rpx;
 }
 
 .selectBox {

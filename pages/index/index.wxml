@@ -48,8 +48,8 @@
   </view>
   <view class="add" wx:if="{{true}}" >
     <view class="addIcon" bindtap="showAddItem"></view>
-    <view class="addPhoto" bindtap='addPhotoPage' wx:if="{{addVlue}}">photo</view>
-    <view class="addVideo" bindtap='didPressChooesVideo' wx:if="{{addVlue}}">video</view>  
+    <view class="addPhoto" bindtap='didPressChooesImage' wx:if="{{addVlue}}"></view>
+    <view class="addVideo" bindtap='didPressChooesVideo' wx:if="{{addVlue}}"></view>  
   </view>
   <view wx:if="{{false}}" class="selectBox" style="left:{{position.left}}px;top:{{position.top}}px"></view>
 </view>
