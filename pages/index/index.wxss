@@ -32,7 +32,16 @@ image{
   overflow:hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  width: 560rpx;
+  width: 520rpx;
+  margin-left:40rpx;
+}
+.text-icon {
+  background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E6%96%87%E5%AD%97.png);
+  background-size: 30rpx 30rpx;
+  height: 30rpx;
+  width: 30rpx;
+  color: #000;
+  position: absolute;
 }
 /*.shadow{
   
@@ -123,6 +132,7 @@ video{
   flex-direction: row;
   position: relative;
   left: -120rpx;
+  margin-top: 10rpx;
 }
 .date {
   width: 100rpx;
@@ -130,6 +140,7 @@ video{
   border-radius: 50rpx;
   background: #fff;
   color: #999;
+  /*border: 1rpx solid #999;*/
 }
 .month {
   margin-left: 24rpx;
@@ -150,8 +161,15 @@ video{
   width: 440rpx;
   height: 100rpx;
   line-height: 100rpx;
-  font-size: 35rpx;
-  margin-left: 20rpx;
+  font-size: 14px;
+  margin-left: 30rpx;
+  color: #fff;
+  background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E6%A0%87%E7%AD%BE%20%281%29.png);
+  background-repeat: no-repeat;
+  background-size: 240rpx 100rpx;
+}
+.age-text{
+  margin-left: 40rpx;
 }
 
 .tree-item{

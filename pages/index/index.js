@@ -102,6 +102,12 @@ Page({
   toPhotoDetail: function(e){
     getApp().doToPhotoDetail(e)
   },
+  // 跳转到addPhotoPage页
+  addPhotoPage: function(e){
+    wx.navigateTo({
+      url: './addPhotoPage/addPhotoPage'
+    })
+  },
   selectBox: function(e) {
     console.log(e.currentTarget)
     console.log(e.currentTarget.offsetLeft,e.currentTarget.offsetTop)

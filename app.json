@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/index/photo-detail/photo-detail",
+    "pages/index/addPhotoPage/addPhotoPage",
     "pages/first/first",
     "pages/logs/logs"
   ],
