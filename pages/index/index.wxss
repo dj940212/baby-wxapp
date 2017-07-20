@@ -14,13 +14,25 @@
 }
 .item-box{
   position: relative;
+  margin-top: 26rpx;
+  margin-bottom: 26rpx;
 }
 image{
   border: 20rpx solid #fff;
   border-radius: 8rpx;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
+}
+.content {
+  font-size: 13px;
+  color: #999;
+  
+}
+.content-text{
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 560rpx;
 }
 /*.shadow{
   
@@ -54,20 +66,25 @@ image{
 video{
   border: 20rpx solid #fff;
   border-radius: 8rpx;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+  background-size: contain;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
 }
 .add {
   z-index: 10;
+  position: relative;
 }
 .addIcon {
-  width: 120rpx;
-  height: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
   border-radius: 60rpx;
   position: fixed;
-  background-color: #fff;
-  bottom: 40rpx;
-  right: 60rpx;
+  background-color: #09ce0c;
+  bottom: 80rpx;
+  right: 40rpx;
+  background: url('http://otdcrqlvr.bkt.clouddn.com/add%20%281%29.png') no-repeat;
+  background-size: 100rpx 100rpx;
 }
 .addPhoto {
   width: 120rpx;
@@ -104,22 +121,37 @@ video{
 .date-box {
   display: flex;
   flex-direction: row;
-}
-.date {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 60rpx;
-  /*border: 1px solid #999;*/
-  background: #fff;
   position: relative;
   left: -120rpx;
 }
-.age {
-  width: 320rpx;
-  height: 120rpx;
-  /*background: red;*/
-  line-height: 120rpx;
+.date {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background: #fff;
+  color: #999;
+}
+.month {
+  margin-left: 24rpx;
+  /*margin-top: 10rpx;*/
+  font-size: 36rpx;
+}
+.day {
+  margin-left: 30rpx;
   font-size: 40rpx;
+}
+.divider{
+  width: 100rpx;
+  height: 1rpx;
+  background: #999;
+  /*margin-top:50rpx;*/
+}
+.age {
+  width: 440rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 35rpx;
+  margin-left: 20rpx;
 }
 
 .tree-item{

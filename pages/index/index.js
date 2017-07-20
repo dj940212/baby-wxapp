@@ -5,14 +5,21 @@ Page({
   data: {
     photoVideoList: [],
     selectBoxValue: false,
-    position:{}
+    position:{},
+    addVlue: false,
   },
   //事件处理函数
   onLoad: function () {
     console.log('onLoad',this)
     var that = this;
     app.getPhotoVideo(that);
-    this.setData({photoVideoList: app.photoVideoList})
+    // this.setData({photoVideoList: app.photoVideoList})
+  },
+  onReady: function (res) {
+    this.videoContext = wx.createVideoContext('myVideo')
+  },
+  onPageScroll: function() {
+    console.log("....")
   },
   // 选择照片
   didPressChooesImage:function() {
@@ -97,11 +104,25 @@ Page({
   },
   selectBox: function(e) {
     console.log(e.currentTarget)
+    console.log(e.currentTarget.offsetLeft,e.currentTarget.offsetTop)
     this.setData({
       position:{left: e.currentTarget.offsetLeft,top:e.currentTarget.offsetTop},
       selectBoxValue: true
     })
+  },
+  showAddItem:function() {
+    this.setData({
+      addVlue : !this.data.addVlue
+    })
+  },
+  showAdd: function(e){
+    // console.log("touches",e.touches)
+  },
+  fullScreen:function(){
+    // this.videoContext = wx.createVideoContext('myVideo')
+    this.videoContext.requestFullScreen({})
   }
+
 });
 
 // 获取七牛签名
