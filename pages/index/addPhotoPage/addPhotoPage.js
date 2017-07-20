@@ -1,6 +1,8 @@
 var sourceType = [ ['camera'], ['album'], ['camera', 'album'] ]
 var sizeType = [ ['compressed'], ['original'], ['compressed', 'original'] ]
 var app = getApp()
+var config = require('../../config')
+var upload = require('../../../utils/uploader')
 
 Page({
   data: {
@@ -44,6 +46,7 @@ Page({
         that.setData({
           imageList: res.tempFilePaths
         })
+        
       }
     })
   },
@@ -53,6 +56,24 @@ Page({
     wx.previewImage({
       current: current,
       urls: this.data.imageList
+    })
+  },
+  publishPhoto: function() {
+    var _this = this
+    upload.getQiniuToken("photo",function(uptoken){
+      var uploadOptions = {
+        filePath:_this.data.imageList,
+        type:"photo",
+        uptoken:uptoken,
+        config:config,
+        that:app.index_this,
+        app:app,
+        photoArr: []
+      }
+      upload.uploadPhoto(uploadOptions)
+    })
+    wx.navigateBack({
+      url: '../index'
     })
   }
 })

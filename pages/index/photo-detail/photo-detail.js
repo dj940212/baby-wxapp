@@ -33,7 +33,7 @@ Page({
   },
   // 跳转到photo-detail页
   back: function() {
-    wx.navigateTo({
+    wx.navigateBack({
       url: '../index'
     })
     // this.photoVideoIndex = e.currentTarget.dataset.index

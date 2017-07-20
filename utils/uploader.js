@@ -1,4 +1,5 @@
-// 上传文件
+var config = require('../pages/config')
+// 上传照片
 function uploadPhoto(data) {
     var i=data.i ? data.i:0
     var success=data.success?data.success:0
@@ -54,6 +55,7 @@ function uploadPhoto(data) {
         }
     })
 }
+// 上传视频
 function uploadVideo(data) {
     // 区域上传地址
     var url = data.config.region;
@@ -87,6 +89,28 @@ function uploadVideo(data) {
         complete: function() {
         }
     })
+}
+// 获取七牛签名
+function getQiniuToken(type,callback) {
+  wx.request({
+    url: config.uptokenURL,
+    method: 'POST',
+    data: {
+        type: type,
+        accessToken: config.accessToken
+    },
+    header: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    success: function (res) {
+      var uptoken = res.data.data.uptoken;;
+      callback && callback(uptoken)
+      console.log("成功获取七牛签名uptoken:"+type)
+    },
+    fail: function (error) {
+      console.log(error);
+    }
+  })
 }
 // 保存照片视屏信息到数据库
 function savePhotoVideoInfo(photoVideoInfo,type,options){
@@ -148,4 +172,5 @@ function calWidthHeight(endArea,startWidth,startHeight) {
 
 module.exports.uploadPhoto = uploadPhoto;
 module.exports.uploadVideo = uploadVideo;
+module.exports.getQiniuToken = getQiniuToken;
 

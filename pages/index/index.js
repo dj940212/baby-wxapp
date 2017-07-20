@@ -13,9 +13,11 @@ Page({
     var _this = this
     app.getPhotoVideo(function(){
       _this.setData({
-      photoVideoList: app.photoVideoList
-    })
+        photoVideoList: app.photoVideoList
+      })
     });
+    // 保存this
+    app.saveIndexThis(this)
   },
   onReady: function (res) {
     this.videoContext = wx.createVideoContext('myVideo')
@@ -128,28 +130,7 @@ Page({
 
 });
 
-// 获取七牛签名
-function getQiniuToken(type,callback) {
-  wx.request({
-    url: config.uptokenURL,
-    method: 'POST',
-    data: {
-        type: type,
-        accessToken: config.accessToken
-    },
-    header: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    success: function (res) {
-      var uptoken = res.data.data.uptoken;;
-      callback && callback(uptoken)
-      console.log("成功获取七牛签名uptoken:"+type)
-    },
-    fail: function (error) {
-      console.log(error);
-    }
-  })
-}
+
 
 
 

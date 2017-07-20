@@ -60,13 +60,17 @@ App({
     })
     this.photoFilePath = filePath
   },
+  saveIndexThis : function(_this){
+    this.index_this = _this
+  },
   globalData:{
     userInfo:null
   },
   photoVideoList: [],
   photoVideoIndex: null,
   photoFilePath:{},
-  test: 123
+  test: 123,
+  index_this:{}
 
 })
 

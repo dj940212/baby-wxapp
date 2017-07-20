@@ -14,6 +14,10 @@
               <view class="image-plus-vertical"></view>
             </view>
           </view>
+          <view bindtap="publishPhoto">
+            <button type="primary" size="default" loading="{{false}}" plain="{{flase}}" disabled="{{false}}" bindtap="primary"> primary </button>
+          </view>
+          
         </view>
     </view>
   </view>
