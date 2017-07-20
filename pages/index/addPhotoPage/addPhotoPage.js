@@ -1,5 +1,6 @@
 var sourceType = [ ['camera'], ['album'], ['camera', 'album'] ]
 var sizeType = [ ['compressed'], ['original'], ['compressed', 'original'] ]
+var app = getApp()
 
 Page({
   data: {
@@ -11,6 +12,11 @@ Page({
 
     countIndex: 8,
     count: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  },
+  onLoad:function(){
+    this.setData({
+      imageList: app.photoFilePath
+    })
   },
   sourceTypeChange: function (e) {
     this.setData({

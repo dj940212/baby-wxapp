@@ -43,7 +43,6 @@
           </view>
         </view>
       </view>
-
     </view>
   </view>
   <view class="add" wx:if="{{true}}" >

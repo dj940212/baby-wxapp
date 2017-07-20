@@ -30,19 +30,20 @@ Page({
       success: function (res) {
         var filePath = res.tempFilePaths;
         console.log("选择文件",res)
+        app.addPhotoPage(filePath)
         // 获取七牛签名
-        getQiniuToken("photo",function(uptoken) {
-          var uploadOptions = {
-            filePath:filePath,
-            type:"photo",
-            uptoken:uptoken,
-            config:config,
-            that:that,
-            app:app,
-            photoArr: []
-          }
-          upload.uploadPhoto(uploadOptions)
-        })
+        // getQiniuToken("photo",function(uptoken) {
+        //   var uploadOptions = {
+        //     filePath:filePath,
+        //     type:"photo",
+        //     uptoken:uptoken,
+        //     config:config,
+        //     that:that,
+        //     app:app,
+        //     photoArr: []
+        //   }
+        //   upload.uploadPhoto(uploadOptions)
+        // })
       }
     })
   },
@@ -101,12 +102,6 @@ Page({
   // 跳转到photoDetail页
   toPhotoDetail: function(e){
     getApp().doToPhotoDetail(e)
-  },
-  // 跳转到addPhotoPage页
-  addPhotoPage: function(e){
-    wx.navigateTo({
-      url: './addPhotoPage/addPhotoPage'
-    })
   },
   selectBox: function(e) {
     console.log(e.currentTarget)

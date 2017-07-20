@@ -56,11 +56,19 @@ App({
     })
     this.photoVideoIndex = e.currentTarget.dataset.index
   },
+  // 跳转到addPhotoPage页
+  addPhotoPage: function(filePath){
+    wx.navigateTo({
+      url: './addPhotoPage/addPhotoPage'
+    })
+    this.photoFilePath = filePath
+  },
   globalData:{
     userInfo:null
   },
   photoVideoList: [],
-  photoVideoIndex: null
+  photoVideoIndex: null,
+  photoFilePath:{}
 
 })
 
