@@ -65,6 +65,7 @@ video{
   right: 40rpx;
   background: url('http://otdcrqlvr.bkt.clouddn.com/add%20%281%29.png') no-repeat;
   background-size: 100rpx 100rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
 }
 .addPhoto {
   width: 80rpx;
@@ -80,6 +81,7 @@ video{
   background-size: 50rpx 50rpx;
   background-repeat: no-repeat;
   background-position: 14rpx 14rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
 }
 
 .addVideo {
@@ -96,6 +98,7 @@ video{
   background-size: 40rpx 40rpx;
   background-repeat: no-repeat;
   background-position: 18rpx 18rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
 }
 
 .selectBox {
@@ -146,6 +149,7 @@ video{
   background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E6%A0%87%E7%AD%BE%20%281%29.png);
   background-repeat: no-repeat;
   background-size: 240rpx 100rpx;
+  
 }
 .age-text{
   margin-left: 40rpx;
