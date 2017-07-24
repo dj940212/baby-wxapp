@@ -23,20 +23,23 @@ image{
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
 }
 .content {
-  font-size: 13px;
-  background: rgba(0,0,0,0.6);
+  font-size: 10px;
+  background: rgba(0,0,0,0.3);
   color: #fff;
   position: absolute;
-  top: 334rpx;
+  top: 354rpx;
   left: 12rpx;
+  width: 520rpx;
 }
 .content-text{
   overflow:hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  width: 500rpx;
+  width: 400rpx;
   margin-left:20rpx;
-  line-height: 60rpx;
+  line-height: 20px;
+  font-family: "Microsoft Yahei";
+  letter-spacing: 2px;
 }
 .text-icon {
   background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E6%96%87%E5%AD%97.png);
@@ -116,30 +119,33 @@ video{
   display: flex;
   flex-direction: row;
   position: relative;
-  left: -112rpx;
+  left: -102rpx;
   margin-top: 10rpx;
 }
 .date {
-  width: 80rpx;
-  height: 80rpx;
+  width: 60rpx;
+  height: 60rpx;
   border: 8rpx solid #dbdbdb;
-  border-radius: 48rpx;
+  border-radius: 38rpx;
   background: #8ecb00;
   color: #fff;
 }
 .month {
   margin-left: 22rpx;
   font-size: 30rpx;
+  display: none;
 }
 .day {
   margin-left: 22rpx;
   font-size: 36rpx;
+  display: none;
 }
 .divider{
   width: 80rpx;
   height: 1rpx;
   background: #fff;
   /*margin-top:50rpx;*/
+  display: none;
 }
 .age {
   width: 440rpx;

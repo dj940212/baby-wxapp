@@ -11,7 +11,7 @@
               mode="aspectFill"  
               src="{{item.photoVideoUrl[0]}}" 
               bindtap="toPhotoDetail"
-              style="width: 520rpx;height: 380rpx">
+              style="width: 560rpx;height: 380rpx">
             </image>
           </view>
         </view>
@@ -31,14 +31,14 @@
           <view class="text-icon" wx:if="{{false}}"></view>
           <view class="content-text" >妈妈:宝贝好可爱宝贝好可爱宝贝好可爱宝贝好可爱宝贝好可爱宝贝好可爱</view>
         </view>
-        <view class="tree-item"></view>
+        <!-- <view class="tree-item"></view> -->
         <view class="date-box" wx:if="{{index%2}}">
           <view class="date">
             <view class="day">12</view>
             <view class="divider"></view>
             <view class="month">MAY</view>
           </view>
-          <view class="age">
+          <view class="age" wx:if="{{false}}">
             <view class="age-text">1岁3个月21天</view>
           </view>
         </view>
