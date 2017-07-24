@@ -28,7 +28,7 @@
           </video>
         </view>
         <view class="content" wx:if="{{index%3}}">
-          <view class="text-icon"></view>
+          <view class="text-icon" wx:if="{{false}}"></view>
           <view class="content-text" >妈妈:宝贝好可爱宝贝好可爱宝贝好可爱宝贝好可爱宝贝好可爱宝贝好可爱</view>
         </view>
         <view class="tree-item"></view>

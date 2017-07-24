@@ -4,11 +4,11 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  background: #eee;
+  background: #f8f8f8;
   width: 100%;
 }
 .photoVideoBox {
-  border-left: 14rpx solid #fff;
+  border-left: 4rpx solid #e6e6e6;
   padding-left: 60rpx;
   /*background: #eee;*/
 }
@@ -18,22 +18,25 @@
   margin-bottom: 26rpx;
 }
 image{
-  border: 20rpx solid #fff;
-  border-radius: 8rpx;
-  
+  border: 12rpx solid #fff;
+  border-radius: 10rpx;
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
 }
 .content {
   font-size: 13px;
-  color: #999;
-  
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  position: absolute;
+  top: 334rpx;
+  left: 12rpx;
 }
 .content-text{
   overflow:hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  width: 520rpx;
-  margin-left:40rpx;
+  width: 500rpx;
+  margin-left:20rpx;
+  line-height: 60rpx;
 }
 .text-icon {
   background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E6%96%87%E5%AD%97.png);
@@ -44,10 +47,10 @@ image{
   position: absolute;
 }
 video{
-  border: 20rpx solid #fff;
-  border-radius: 8rpx;
-  margin-top: 16rpx;
-  margin-bottom: 16rpx;
+  border: 12rpx solid #fff;
+  border-radius: 10rpx;
+  /*margin-top: 16rpx;*/
+  /*margin-bottom: 16rpx;*/
   background-size: contain;
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
 }
@@ -113,30 +116,29 @@ video{
   display: flex;
   flex-direction: row;
   position: relative;
-  left: -120rpx;
+  left: -112rpx;
   margin-top: 10rpx;
 }
 .date {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50rpx;
-  background: #fff;
-  color: #999;
-  /*border: 1rpx solid #999;*/
+  width: 80rpx;
+  height: 80rpx;
+  border: 8rpx solid #dbdbdb;
+  border-radius: 48rpx;
+  background: #8ecb00;
+  color: #fff;
 }
 .month {
-  margin-left: 24rpx;
-  /*margin-top: 10rpx;*/
-  font-size: 36rpx;
+  margin-left: 22rpx;
+  font-size: 30rpx;
 }
 .day {
-  margin-left: 30rpx;
-  font-size: 40rpx;
+  margin-left: 22rpx;
+  font-size: 36rpx;
 }
 .divider{
-  width: 100rpx;
+  width: 80rpx;
   height: 1rpx;
-  background: #999;
+  background: #fff;
   /*margin-top:50rpx;*/
 }
 .age {
@@ -149,18 +151,18 @@ video{
   background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E6%A0%87%E7%AD%BE%20%281%29.png);
   background-repeat: no-repeat;
   background-size: 240rpx 100rpx;
-  
+
 }
 .age-text{
   margin-left: 40rpx;
 }
 
 .tree-item{
-  width: 70rpx;
-  height: 12rpx;
-  /*border-top: 6px solid #fff;*/
-  background: #fff;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  background: #dbdbdb;
   position: absolute;
-  top: 80rpx;
-  left: -64rpx;
+  top: 40rpx;
+  left: -84rpx;
 }
