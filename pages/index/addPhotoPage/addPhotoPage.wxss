@@ -3,9 +3,7 @@
   background-color: #fff;
   margin-top: 20rpx;
 }
-.images-wrapper-text {
-  font-size: 28rpx;
-}
+
 .images-list {
   display: flex;
   margin-top: 20rpx;
@@ -17,7 +15,7 @@
   margin: 10rpx;
 }
 .image-plus {
-  border: 1px solid #999;
+  border: 1px solid #eee;
   position: relative;
 }
 .image-plus-horizontal {
@@ -37,4 +35,21 @@
   width: 80rpx;
   height: 4rpx;
   transform: translate(-50%, -50%);
+}
+.publish-btn{
+  border-radius: 1px;
+}
+.publish-wrapper{
+  margin-top: 80rpx;
+}
+.content {
+  font-size: 14px;
+}
+textarea{
+  height: 80px;
+  /*text-align: center;*/
+  width: 100%;
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+  color: #333;
 }

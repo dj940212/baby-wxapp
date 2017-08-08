@@ -1,3 +1,5 @@
 {
-    "navigationBarTitleText": "发布照片"
+    "navigationBarTitleText": "发布照片",
+    "navigationBarBackgroundColor": "#666",
+    "navigationBarTextStyle":"#fff"
 }

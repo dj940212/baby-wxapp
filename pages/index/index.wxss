@@ -153,9 +153,9 @@ video{
   line-height: 100rpx;
   font-size: 14px;
   margin-left: 30rpx;
-  color: #fff;
-  background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E6%A0%87%E7%AD%BE%20%281%29.png);
-  background-repeat: no-repeat;
+  color: #000;
+  /*background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E6%A0%87%E7%AD%BE%20%281%29.png);
+  background-repeat: no-repeat;*/
   background-size: 240rpx 100rpx;
 
 }

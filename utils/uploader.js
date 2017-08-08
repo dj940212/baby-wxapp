@@ -44,12 +44,15 @@ function uploadPhoto(data) {
             data.app.photoVideoList = list
             
             dataObject.photoVideoUrl = photoArr
+            dataObject.content = data.content
+            // 保存信息
             savePhotoVideoInfo(dataObject,data.type,data.config)
           }else{//若图片还没有传完，则继续调用函数
             console.log(i);
             data.i=i;
             data.success=success;
             data.fail=fail;
+            // 迭代
             uploadPhoto(data);
           }
         }
@@ -122,6 +125,7 @@ function savePhotoVideoInfo(photoVideoInfo,type,options){
         type: type,
         thumbnailUrl: photoVideoInfo.thumbnailUrl,
         accessToken: options.accessToken,
+        content: photoVideoInfo.content,
         width: photoVideoInfo.width,
         height: photoVideoInfo.height
     },

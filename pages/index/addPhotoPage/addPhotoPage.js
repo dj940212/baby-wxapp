@@ -1,46 +1,23 @@
-var sourceType = [ ['camera'], ['album'], ['camera', 'album'] ]
-var sizeType = [ ['compressed'], ['original'], ['compressed', 'original'] ]
 var app = getApp()
 var config = require('../../config')
 var upload = require('../../../utils/uploader')
 
 Page({
   data: {
-    sourceTypeIndex: 2,
-    sourceType: ['拍照', '相册', '拍照或相册'],
-
-    sizeTypeIndex: 2,
-    sizeType: ['压缩', '原图', '压缩或原图'],
-
-    countIndex: 8,
-    count: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    content:""
   },
   onLoad:function(){
     this.setData({
       imageList: app.photoFilePath
     })
   },
-  sourceTypeChange: function (e) {
-    this.setData({
-      sourceTypeIndex: e.detail.value
-    })
-  },
-  sizeTypeChange: function (e) {
-    this.setData({
-      sizeTypeIndex: e.detail.value
-    })
-  },
-  countChange: function (e) {
-    this.setData({
-      countIndex: e.detail.value
-    })
-  },
+  // 选择照片
   chooseImage: function () {
     var that = this
     wx.chooseImage({
-      sourceType: sourceType[this.data.sourceTypeIndex],
-      sizeType: sizeType[this.data.sizeTypeIndex],
-      count: this.data.count[this.data.countIndex],
+      count: 9,
+      sourceType: 'album',
+      sizeType: 'compressed',
       success: function (res) {
         console.log(res)
         that.setData({
@@ -50,6 +27,7 @@ Page({
       }
     })
   },
+  // 照片预览
   previewImage: function (e) {
     var current = e.target.dataset.src
 
@@ -58,8 +36,10 @@ Page({
       urls: this.data.imageList
     })
   },
+  // 发布照片
   publishPhoto: function() {
     var _this = this
+    console.log("publishPhoto",this.data.content)
     upload.getQiniuToken("photo",function(uptoken){
       var uploadOptions = {
         filePath:_this.data.imageList,
@@ -68,12 +48,17 @@ Page({
         config:config,
         that:app.index_this,
         app:app,
-        photoArr: []
+        photoArr: [],
+        content:_this.data.content
       }
       upload.uploadPhoto(uploadOptions)
     })
     wx.navigateBack({
       url: '../index'
     })
+  },
+  // 获取文字类容
+  getContent: function(e) {
+    this.setData({ content: e.detail.value})
   }
 })

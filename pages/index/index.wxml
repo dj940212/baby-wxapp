@@ -1,7 +1,17 @@
 <view class="main" bindtouchmove="showAdd">
   <view class="container">
     <view class="photoVideoBox">
-      <view wx:for="{{photoVideoList}}" wx:for-item="item" wx:key="*this" class="item-box"> 
+      <view wx:for="{{photoVideoList}}" wx:for-item="item" wx:key="*this" class="item-box">
+        <view class="date-box" wx:if="{{item.age}}">
+          <view class="date">
+            <view class="day">12</view>
+            <view class="divider"></view>
+            <view class="month">MAY</view>
+          </view>
+          <view class="age" wx:if="{{true}}">
+            <view class="age-text">{{item.age}}</view>
+          </view>
+        </view> 
         <view wx:if="{{item.type === 'photo'}}" class="photo-item" >
           <view class="shadow" bindlongtap="selectBox">
             <image 
@@ -27,20 +37,9 @@
             poster="{{item.thumbnailUrl}}">
           </video>
         </view>
-        <view class="content" wx:if="{{index%3}}">
+        <view class="content">
           <view class="text-icon" wx:if="{{false}}"></view>
-          <view class="content-text" >妈妈:宝贝好可爱宝贝好可爱宝贝好可爱宝贝好可爱宝贝好可爱宝贝好可爱</view>
-        </view>
-        <!-- <view class="tree-item"></view> -->
-        <view class="date-box" wx:if="{{index%2}}">
-          <view class="date">
-            <view class="day">12</view>
-            <view class="divider"></view>
-            <view class="month">MAY</view>
-          </view>
-          <view class="age" wx:if="{{false}}">
-            <view class="age-text">1岁3个月21天</view>
-          </view>
+          <view class="content-text" >{{item.content}}</view>
         </view>
       </view>
     </view>

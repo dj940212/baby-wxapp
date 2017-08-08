@@ -11,7 +11,8 @@ Page({
   },
   onLoad: function() {
     this.setData({
-      imgUrls: app.photoVideoList[app.photoVideoIndex].photoVideoUrl
+      imgUrls: app.photoVideoList[app.photoVideoIndex].photoVideoUrl,
+      content: app.photoVideoList[app.photoVideoIndex].content
     })
     console.log(this.data.imgUrls)
     this.getSwiperHeight()
