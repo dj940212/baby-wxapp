@@ -32,7 +32,7 @@
             data-id="{{item.id}}"
             data-index="{{index}}" 
             bindlongtap="selectBox" 
-            style="width: 520rpx;height: 380rpx" 
+            style="width: 560rpx;height: 380rpx" 
             objectFit="cover"  
             poster="{{item.thumbnailUrl}}">
           </video>

@@ -34,20 +34,8 @@ Page({
       success: function (res) {
         var filePath = res.tempFilePaths;
         console.log("选择文件",res)
+        // 跳转到编辑页
         app.addPhotoPage(filePath)
-        // 获取七牛签名
-        // getQiniuToken("photo",function(uptoken) {
-        //   var uploadOptions = {
-        //     filePath:filePath,
-        //     type:"photo",
-        //     uptoken:uptoken,
-        //     config:config,
-        //     that:that,
-        //     app:app,
-        //     photoArr: []
-        //   }
-        //   upload.uploadPhoto(uploadOptions)
-        // })
       }
     })
   },
@@ -62,7 +50,7 @@ Page({
         var filePath = res.tempFilePath;
         console.log(filePath)
         // 获取七牛签名
-        getQiniuToken("video",function(uptoken) {
+        upload.getQiniuToken("video",function(uptoken) {
           var uploadOptions = {
             filePath:filePath,
             type:"video",

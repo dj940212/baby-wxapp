@@ -8,14 +8,14 @@
   width: 100%;
 }
 .photoVideoBox {
-  border-left: 4rpx solid #e6e6e6;
+  border-left: 5rpx solid #e6e6e6;
   padding-left: 60rpx;
   /*background: #eee;*/
 }
 .item-box{
   position: relative;
   margin-top: 26rpx;
-  margin-bottom: 26rpx;
+  /*margin-bottom: 26rpx;*/
 }
 image{
   border: 12rpx solid #fff;
@@ -119,8 +119,8 @@ video{
   display: flex;
   flex-direction: row;
   position: relative;
-  left: -102rpx;
-  margin-top: 10rpx;
+  left: -100rpx;
+  top: -15rpx;
 }
 .date {
   width: 60rpx;
@@ -149,18 +149,16 @@ video{
 }
 .age {
   width: 440rpx;
-  height: 100rpx;
-  line-height: 100rpx;
-  font-size: 14px;
-  margin-left: 30rpx;
-  color: #000;
-  /*background-image: url(http://otdcrqlvr.bkt.clouddn.com/%E6%A0%87%E7%AD%BE%20%281%29.png);
-  background-repeat: no-repeat;*/
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 16px;
+  margin-left: 20rpx;
+  color: #333;
   background-size: 240rpx 100rpx;
-
 }
 .age-text{
   margin-left: 40rpx;
+  letter-spacing: 2rpx;
 }
 
 .tree-item{
