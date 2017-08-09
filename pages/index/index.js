@@ -5,10 +5,10 @@ var app = getApp()
 Page({
   data: {
     photoVideoList: [],
-    selectBoxValue: false,
     position:{},
     addVlue: false,
-    nowAge: ""
+    nowAge: "",
+    contentValue: true
   },
   //事件处理函数
   onLoad: function () {
@@ -24,10 +24,7 @@ Page({
         photoVideoList: app.photoVideoList
       })
       wx.stopPullDownRefresh()
-    })
-
-    
-    
+    }) 
   },
   onReady: function (res) {
     this.videoContext = wx.createVideoContext('myVideo')
@@ -38,6 +35,10 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function(){
     this.onLoad()
+  },
+  // 上拉加载
+  onReachBottom: function() {
+     console.log('circle 下一页');
   },
   // 选择照片
   didPressChooesImage:function() {
@@ -58,22 +59,13 @@ Page({
     var that = this
     wx.chooseVideo({
       sourceType: ['album','camera'],
-      maxDuration: 60,
+      maxDuration: 20,
       camera: 'back',
       success: function(res) {
         var filePath = res.tempFilePath;
         console.log(filePath)
-        // 获取七牛签名
-        upload.getQiniuToken("video",function(uptoken) {
-          var uploadOptions = {
-            filePath:filePath,
-            type:"video",
-            uptoken:uptoken,
-            config:config,
-            that:that
-          }
-          upload.uploadVideo(uploadOptions)
-        })
+        // 跳转到编辑页
+        app.addVideoPage(filePath)
       }
     })
   },
@@ -136,9 +128,16 @@ Page({
   showAdd: function(e){
     // console.log("touches",e.touches)
   },
-  fullScreen:function(){
-    // this.videoContext = wx.createVideoContext('myVideo')
-    this.videoContext.requestFullScreen({})
+  hideContent: function(e){
+    this.setData({
+      contentValue: false
+    })
+    console.log("play",e)
+  },
+  showContent: function(){
+    this.setData({
+      contentValue: true
+    })
   }
 
 });

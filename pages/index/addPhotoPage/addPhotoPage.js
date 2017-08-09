@@ -40,11 +40,12 @@ Page({
   publishPhoto: function() {
     var _this = this
     console.log("publishPhoto",this.data.content)
-    upload.getQiniuToken("photo",function(uptoken){
+    upload.getQiniuToken("photo",function(resData){
       var uploadOptions = {
         filePath:_this.data.imageList,
         type:"photo",
-        uptoken:uptoken,
+        uptoken:resData.uptoken,
+        key:resData.key,
         config:config,
         that:app.index_this,
         app:app,

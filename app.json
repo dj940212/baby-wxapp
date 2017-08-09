@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/index/photo-detail/photo-detail",
     "pages/index/addPhotoPage/addPhotoPage",
+    "pages/index/addVideoPage/addVideoPage",
     "pages/first/first",
     "pages/logs/logs"
   ],

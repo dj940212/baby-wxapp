@@ -60,6 +60,13 @@ App({
     })
     this.photoFilePath = filePath
   },
+  // 跳转到addVideoPage页
+  addVideoPage: function(filePath){
+    wx.navigateTo({
+      url: './addVideoPage/addVideoPage'
+    })
+    this.videoFilePath = filePath
+  },
   saveIndexThis : function(_this){
     this.index_this = _this
   },
@@ -69,6 +76,7 @@ App({
   photoVideoList: [],
   photoVideoIndex: null,
   photoFilePath:{},
+  videoFilePath:{},
   test: 123,
   index_this:{}
 

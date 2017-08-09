@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="page-body">
+    <view class="page-body-wrapper">
+        <view class="images-wrapper">
+          <view class="content">
+            <textarea placeholder="这一刻的想法..." bindinput="getContent"></textarea>
+          </view>
+          <view class="video-thumb">
+            <image mode="aspectFill" class="images-image"></image>
+          </view>
+          <view class="publish-wrapper" bindtap="publishVideo">
+            <button class="publish-btn" type="primary" size="default" loading="{{false}}" plain="{{flase}}" disabled="{{false}}" bindtap="primary"> 发 布 </button>
+          </view>
+        </view>
+    </view>
+  </view>
+</view>

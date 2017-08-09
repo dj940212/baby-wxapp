@@ -29,13 +29,15 @@
             src="{{item.photoVideoUrl}}" 
             data-id="{{item.id}}"
             data-index="{{index}}" 
-            bindlongtap="selectBox" 
+            bindlongtap="selectBox"
+            bindplay="hideContent" 
+            bindpause="showContent"
             style="width: 580rpx;height: 360rpx" 
-            objectFit="cover"  
+            objectFit="cover" 
             poster="{{item.thumbnailUrl}}">
           </video>
         </view>
-        <view class="content">
+        <view class="content" wx:if="{{contentValue}}">
           <view class="text-icon" wx:if="{{false}}"></view>
           <view class="content-text" >{{item.content}}</view>
         </view>
@@ -47,5 +49,4 @@
     <view class="addPhoto" bindtap='didPressChooesImage' wx:if="{{addVlue}}"></view>
     <view class="addVideo" bindtap='didPressChooesVideo' wx:if="{{addVlue}}"></view>  
   </view>
-  <!-- <view wx:if="{{false}}" class="selectBox" style="left:{{position.left}}px;top:{{position.top}}px"></view> -->
 </view>

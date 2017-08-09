@@ -7,7 +7,7 @@ function uploadPhoto(data) {
     var photoArr = data.photoArr ? data.photoArr:0
     // 区域上传地址
     var url = data.config.region;
-    var fileName = data.filePath[i].split('//')[1];
+    // var fileName = data.filePath[i].split('//')[1];
     var dataObject = {}
     wx.uploadFile({
         url: url,
@@ -15,7 +15,7 @@ function uploadPhoto(data) {
         name: 'file',
         formData: {
           'token': data.uptoken,
-          'key': fileName
+          'key': data.key
         },
         success: function (res) {
             dataObject = JSON.parse(res.data);
@@ -63,7 +63,7 @@ function uploadPhoto(data) {
 function uploadVideo(data) {
     // 区域上传地址
     var url = data.config.region;
-    var fileName = data.filePath.split('//')[1];
+    // var fileName = data.filePath.split('//')[1];
     var videoInfo = {}
     var photoVideoUrl = ''
     wx.uploadFile({
@@ -72,15 +72,18 @@ function uploadVideo(data) {
         name: 'file',
         formData: {
           'token': data.uptoken,
-          'key': fileName
+          'key': data.key
         },
         success: function (res) {
+          console.log(res)
           videoInfo = JSON.parse(res.data);
           photoVideoUrl = data.config.domain +'/'+ videoInfo.key;
           videoInfo.photoVideoUrl = photoVideoUrl
-          videoInfo.thumbnailUrl = videoInfo.hash ? data.config.domain+'/Q9GLAFFqfCrYF6YfQAcON4w4Ezs=/'+videoInfo.hash :''
-          var list = data.that.data.photoVideoList;
-          list.push({photoVideoUrl:photoVideoUrl,type:data.type})
+          videoInfo.thumbnailUrl = config.domain +'/'+ data.thumbKey
+          videoInfo.content = data.content
+
+          var list = data.that.data.photoVideoList
+          list.unshift({photoVideoUrl:photoVideoUrl,type:data.type})
           data.that.setData({
             photoVideoList: list
           })
@@ -88,7 +91,7 @@ function uploadVideo(data) {
           savePhotoVideoInfo(videoInfo,data.type,data.config)
         },
         fail: function (error) {
-            console.log("上传失败",err);
+            console.log("上传失败");
         },
         complete: function() {
         }
@@ -107,8 +110,9 @@ function getQiniuToken(type,callback) {
       "Content-Type": "application/x-www-form-urlencoded"
     },
     success: function (res) {
-      var uptoken = res.data.data.uptoken;;
-      callback && callback(uptoken)
+      var resData = res.data.data;
+      console.log(resData)
+      callback && callback(resData)
       console.log("成功获取七牛签名uptoken:"+type)
     },
     fail: function (error) {
