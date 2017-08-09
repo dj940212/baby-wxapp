@@ -54,6 +54,7 @@ App({
       url: './photo-detail/photo-detail'
     })
     this.photoVideoIndex = e.currentTarget.dataset.index
+    console.log("详情页index",this.photoVideoIndex)
   },
   // 跳转到addPhotoPage页
   addPhotoPage: function(filePath){

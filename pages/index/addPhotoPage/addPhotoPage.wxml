@@ -7,7 +7,7 @@
           </view>
           <view class="images-list">
             <view wx:for="{{imageList}}" wx:for-item="image">
-              <image src="{{image}}" class="images-image" data-src="{{image}}" bindtap="previewImage"></image>
+              <image src="{{image}}" mode="aspectFill" class="images-image" data-src="{{image}}" bindtap="previewImage"></image>
             </view>
             <view class="images-image image-plus" bindtap="chooseImage">
               <view class="image-plus-horizontal"></view>

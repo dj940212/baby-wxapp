@@ -19,6 +19,9 @@ Page({
     publishVideo: function() {
         var _this = this
         console.log("publishVideo",this.data.content)
+        app.index_this.setData({
+            loadingValue: false
+        })
         upload.getQiniuToken("video",function(resData){
           var uploadOptions = {
             filePath: app.videoFilePath,
@@ -36,5 +39,6 @@ Page({
         wx.navigateBack({
           url: '../index'
         })
+
     }
 })

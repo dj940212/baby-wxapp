@@ -37,7 +37,7 @@ function uploadPhoto(data) {
 
             // 修改data值
             var list = data.that.data.photoVideoList;
-            list.unshift({photoVideoUrl:photoArr,type:data.type})
+            list.unshift({photoVideoUrl:photoArr,type:data.type,content:data.content})
 
             data.that.setData({
               photoVideoList: list
@@ -46,6 +46,7 @@ function uploadPhoto(data) {
             
             dataObject.photoVideoUrl = photoArr
             dataObject.content = data.content
+            dataObject.app = data.app
             // 保存信息
             savePhotoVideoInfo(dataObject,data.type,data.config)
           }else{//若图片还没有传完，则继续调用函数
@@ -81,9 +82,10 @@ function uploadVideo(data) {
           videoInfo.photoVideoUrl = photoVideoUrl
           videoInfo.thumbnailUrl = config.domain +'/'+ data.thumbKey
           videoInfo.content = data.content
+          videoInfo.app = data.app
 
           var list = data.that.data.photoVideoList
-          list.unshift({photoVideoUrl:photoVideoUrl,type:data.type})
+          list.unshift({photoVideoUrl:photoVideoUrl,type:data.type,content:data.content,thumbnailUrl:videoInfo.thumbnailUrl})
           data.that.setData({
             photoVideoList: list
           })
@@ -91,7 +93,10 @@ function uploadVideo(data) {
           savePhotoVideoInfo(videoInfo,data.type,data.config)
         },
         fail: function (error) {
-            console.log("上传失败");
+          console.log("上传失败");
+          // data.app.index_this.setData({
+          //   loadingValue: true
+          // })
         },
         complete: function() {
         }
@@ -139,13 +144,17 @@ function savePhotoVideoInfo(photoVideoInfo,type,options){
     },
     success: function (res) {
       console.log('保存'+type+'到数据库成功')
+      // 更新链接数组
+      photoVideoInfo.app.getPhotoVideo()
+      photoVideoInfo.app.index_this.setData({
+        loadingValue: true
+      })
     },
     fail: function (error) {
       console.log(error);
     }
   })
 }
-
 module.exports.uploadPhoto = uploadPhoto;
 module.exports.uploadVideo = uploadVideo;
 module.exports.getQiniuToken = getQiniuToken;

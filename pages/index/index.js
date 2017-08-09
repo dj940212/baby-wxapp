@@ -8,7 +8,8 @@ Page({
     position:{},
     addVlue: false,
     nowAge: "",
-    contentValue: true
+    contentValue: true,
+    loadingValue: true
   },
   //事件处理函数
   onLoad: function () {
@@ -30,7 +31,9 @@ Page({
     this.videoContext = wx.createVideoContext('myVideo')
   },
   onPageScroll: function() {
-    // console.log("....")
+    this.setData({
+      addVlue : false
+    })
   },
   // 下拉刷新
   onPullDownRefresh: function(){

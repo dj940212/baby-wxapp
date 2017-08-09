@@ -11,8 +11,8 @@ Page({
   },
   onLoad: function() {
     this.setData({
-      imgUrls: app.photoVideoList[app.photoVideoIndex].photoVideoUrl,
-      content: app.photoVideoList[app.photoVideoIndex].content
+      imgUrls: app.index_this.data.photoVideoList[app.photoVideoIndex].photoVideoUrl,
+      content: app.index_this.data.photoVideoList[app.photoVideoIndex].content
     })
     console.log(this.data.imgUrls)
     this.getSwiperHeight()
@@ -37,6 +37,5 @@ Page({
     wx.navigateBack({
       url: '../index'
     })
-    // this.photoVideoIndex = e.currentTarget.dataset.index
   },
 })

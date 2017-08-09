@@ -27,7 +27,7 @@ image{
   background: rgba(0,0,0,0.4);
   color: #fff;
   position: absolute;
-  bottom: 22rpx;
+  bottom: 20rpx;
   left: 12rpx;
   width: 580rpx;
   z-index: 1000;
@@ -39,7 +39,7 @@ image{
   width: 550rpx;
   margin-left:20rpx;
   color: #f4f5f5;
-  line-height: 20px;
+  line-height: 21px;
   font-family: "Microsoft Yahei";
   letter-spacing: 1px;
 }
@@ -54,13 +54,12 @@ image{
 video{
   border: 12rpx solid #fff;
   border-radius: 10rpx;
-  /*margin-top: 16rpx;*/
-  /*margin-bottom: 16rpx;*/
   background-size: contain;
+  background-color: rgba(0,0,0,0);
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
 }
 .add {
-  z-index: 10;
+  z-index: 1001;
   position: relative;
 }
 .addIcon {
@@ -134,12 +133,12 @@ video{
 }
 .age {
   width: 440rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-  font-size: 16px;
-  margin-left: 20rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  font-size: 14px;
+  margin-left: 10rpx;
   color: #333;
-  background-size: 240rpx 100rpx;
+  /*background-size: 240rpx 100rpx;*/
 }
 .age-text{
   margin-left: 40rpx;
@@ -154,4 +153,12 @@ video{
   position: absolute;
   top: 40rpx;
   left: -84rpx;
+}
+.bottom-loading{
+  padding: 10rpx 0;
+  text-align: center;
+  line-height: 35rpx;
+  font-size: 13px;
+  color: #666;
+  /*background-color: #eee;*/
 }

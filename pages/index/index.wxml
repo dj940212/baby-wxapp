@@ -30,8 +30,6 @@
             data-id="{{item.id}}"
             data-index="{{index}}" 
             bindlongtap="selectBox"
-            bindplay="hideContent" 
-            bindpause="showContent"
             style="width: 580rpx;height: 360rpx" 
             objectFit="cover" 
             poster="{{item.thumbnailUrl}}">
@@ -42,6 +40,9 @@
           <view class="content-text" >{{item.content}}</view>
         </view>
       </view>
+      <view class="bottom-loading">
+        加载中...
+      </view>  
     </view>
   </view>
   <view class="add" wx:if="{{true}}" >
@@ -49,4 +50,8 @@
     <view class="addPhoto" bindtap='didPressChooesImage' wx:if="{{addVlue}}"></view>
     <view class="addVideo" bindtap='didPressChooesVideo' wx:if="{{addVlue}}"></view>  
   </view>
+  <view>
+    <loading hidden="{{loadingValue}}" bindchange="loadingChange">上传中...</loading>
+  </view>
+  
 </view>

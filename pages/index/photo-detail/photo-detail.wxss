@@ -12,10 +12,13 @@
 .content{
   width: 100%; 
   position: absolute;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.4);
+  line-height: 35px;
   bottom: 0;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
 }
 .text{
   color: #fff;
-  font-size: 14px;
+  font-size: 15px;
 }

@@ -39,6 +39,9 @@ Page({
   // 发布照片
   publishPhoto: function() {
     var _this = this
+    app.index_this.setData({
+      loadingValue: false
+    })
     console.log("publishPhoto",this.data.content)
     upload.getQiniuToken("photo",function(resData){
       var uploadOptions = {
