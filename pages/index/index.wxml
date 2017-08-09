@@ -2,26 +2,24 @@
   <view class="container">
     <view class="photoVideoBox">
       <view wx:for="{{photoVideoList}}" wx:for-item="item" wx:key="*this" class="item-box">
-        <view class="date-box" wx:if="{{item.age}}">
+        <view class="date-box" wx:if="{{item.age || index===0}}">
           <view class="date">
-            <view class="day">12</view>
-            <view class="divider"></view>
-            <view class="month">MAY</view>
           </view>
           <view class="age" wx:if="{{true}}">
-            <view class="age-text">{{item.age}}</view>
+            <view class="age-text">{{item.age ? item.age : nowAge}}</view>
           </view>
         </view> 
         <view wx:if="{{item.type === 'photo'}}" class="photo-item" >
-          <view class="shadow" bindlongtap="selectBox">
+          <view class="shadow" >
             <image 
               id="myimage" 
               data-id="{{item.id}}"
               data-index="{{index}}" 
               mode="aspectFill"  
               src="{{item.photoVideoUrl[0]}}" 
+              bindlongtap="selectBox"
               bindtap="toPhotoDetail"
-              style="width: 560rpx;height: 380rpx">
+              style="width: 580rpx;height: 360rpx">
             </image>
           </view>
         </view>
@@ -32,7 +30,7 @@
             data-id="{{item.id}}"
             data-index="{{index}}" 
             bindlongtap="selectBox" 
-            style="width: 560rpx;height: 380rpx" 
+            style="width: 580rpx;height: 360rpx" 
             objectFit="cover"  
             poster="{{item.thumbnailUrl}}">
           </video>
@@ -49,5 +47,5 @@
     <view class="addPhoto" bindtap='didPressChooesImage' wx:if="{{addVlue}}"></view>
     <view class="addVideo" bindtap='didPressChooesVideo' wx:if="{{addVlue}}"></view>  
   </view>
-  <view wx:if="{{false}}" class="selectBox" style="left:{{position.left}}px;top:{{position.top}}px"></view>
+  <!-- <view wx:if="{{false}}" class="selectBox" style="left:{{position.left}}px;top:{{position.top}}px"></view> -->
 </view>

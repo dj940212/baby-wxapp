@@ -1,4 +1,5 @@
 var upload = require("../../utils/uploader")
+var util = require("../../utils/util.js")
 var config = require("../config.js")
 var app = getApp()
 Page({
@@ -7,23 +8,36 @@ Page({
     selectBoxValue: false,
     position:{},
     addVlue: false,
+    nowAge: ""
   },
   //事件处理函数
   onLoad: function () {
     var _this = this
+    // 保存this
+    app.saveIndexThis(this)
+    this.setData({
+      nowAge: util.calAge(config.birthday)
+    })
+
     app.getPhotoVideo(function(){
       _this.setData({
         photoVideoList: app.photoVideoList
       })
-    });
-    // 保存this
-    app.saveIndexThis(this)
+      wx.stopPullDownRefresh()
+    })
+
+    
+    
   },
   onReady: function (res) {
     this.videoContext = wx.createVideoContext('myVideo')
   },
   onPageScroll: function() {
     // console.log("....")
+  },
+  // 下拉刷新
+  onPullDownRefresh: function(){
+    this.onLoad()
   },
   // 选择照片
   didPressChooesImage:function() {
@@ -93,14 +107,25 @@ Page({
   },
   // 跳转到photoDetail页
   toPhotoDetail: function(e){
-    getApp().doToPhotoDetail(e)
+    // getApp().doToPhotoDetail(e)
   },
+  // 选项弹窗
   selectBox: function(e) {
+    var that = this
     console.log(e.currentTarget)
     console.log(e.currentTarget.offsetLeft,e.currentTarget.offsetTop)
-    this.setData({
-      position:{left: e.currentTarget.offsetLeft,top:e.currentTarget.offsetTop},
-      selectBoxValue: true
+    
+    wx.showActionSheet({
+      itemList: ['删除', '保存'],
+      success: function(res) {
+        console.log(res.tapIndex)
+        if (res.tapIndex===0) {
+          that.deletePhotoOrVideo(e)
+        }
+      },
+      fail: function(res) {
+        console.log(res.errMsg)
+      }
     })
   },
   showAddItem:function() {

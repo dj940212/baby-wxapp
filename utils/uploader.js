@@ -37,7 +37,8 @@ function uploadPhoto(data) {
 
             // 修改data值
             var list = data.that.data.photoVideoList;
-            list.push({photoVideoUrl:photoArr,type:data.type})
+            list.unshift({photoVideoUrl:photoArr,type:data.type})
+
             data.that.setData({
               photoVideoList: list
             })

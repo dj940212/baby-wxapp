@@ -7,10 +7,11 @@
     "pages/logs/logs"
   ],
   "window":{
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#fff",
-    "backgroundColor": "#fbf9fe",
-    "navigationBarTitleText": "田 京 墨",
-    "navigationBarTextStyle":"black"
+    "backgroundColor": "#eee",
+    "navigationBarTitleText": "田京墨",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh" : true
   }
 }
