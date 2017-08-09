@@ -40,7 +40,7 @@
           <view class="content-text" >{{item.content}}</view>
         </view>
       </view>
-      <view class="bottom-loading">
+      <view class="bottom-loading" wx:if="{{boLoadingValue}}">
         加载中...
       </view>  
     </view>
@@ -51,7 +51,9 @@
     <view class="addVideo" bindtap='didPressChooesVideo' wx:if="{{addVlue}}"></view>  
   </view>
   <view>
-    <loading hidden="{{loadingValue}}" bindchange="loadingChange">上传中...</loading>
+    <loading hidden="{{false}}" bindchange="loadingChange">上传中...</loading>
+    <toast hidden="{{true}}" duration="3000" bindchange="toast2Change">上传失败...
+    </toast>
   </view>
   
 </view>

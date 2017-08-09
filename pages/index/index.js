@@ -9,7 +9,8 @@ Page({
     addVlue: false,
     nowAge: "",
     contentValue: true,
-    loadingValue: true
+    loadingValue: true,
+    boLoadingValue: false
   },
   //事件处理函数
   onLoad: function () {
@@ -17,10 +18,14 @@ Page({
     // 保存this
     app.saveIndexThis(this)
     this.setData({
-      nowAge: util.calAge(config.birthday)
+      nowAge: util.calAge(config.birthday),
+      contentValue: true,
+      loadingValue: true,
+      boLoadingValue: true,
+      addVlue: false,
     })
 
-    app.getPhotoVideo(7,0,function(){
+    app.getPhotoVideo(5,0,function(){
       _this.setData({
         photoVideoList: app.photoVideoList
       })
@@ -44,13 +49,14 @@ Page({
     var _this = this
     var list = this.data.photoVideoList
     var skipNum = list.length
-
+    this.setData({
+      boLoadingValue: true
+    })
     app.getPhotoVideo(3,skipNum,function(){
       _this.setData({
         photoVideoList: _this.data.photoVideoList.concat(app.photoVideoList)
       })
     })
-    
   },
   // 选择照片
   didPressChooesImage:function() {
@@ -132,6 +138,15 @@ Page({
       }
     })
   },
+  loadingChange: function(){
+    wx.showLoading({
+      mask: false
+    })
+  },
+  toastChange: function() {
+    wx.showToast({})
+  },
+  
   showAddItem:function() {
     this.setData({
       addVlue : !this.data.addVlue
