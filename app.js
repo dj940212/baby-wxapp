@@ -25,13 +25,15 @@ App({
     }
   },
   // 获取照片视频列表
-  getPhotoVideo: function (callback){
+  getPhotoVideo: function (count, skipNum, callback){
     var _this = this
     wx.request({
       url: config.getPhotoVideoUrl,
       method: 'GET',
       data: {
-        accessToken: config.accessToken
+        accessToken: config.accessToken,
+        count: count && count,
+        skipNum: skipNum && skipNum
       },
       header: {
         "Content-Type": "application/x-www-form-urlencoded"

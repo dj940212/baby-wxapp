@@ -7,7 +7,7 @@ function uploadPhoto(data) {
     var photoArr = data.photoArr ? data.photoArr:0
     // 区域上传地址
     var url = data.config.region;
-    // var fileName = data.filePath[i].split('//')[1];
+    var fileName = data.filePath[i].split('//')[1];
     var dataObject = {}
     wx.uploadFile({
         url: url,
@@ -15,7 +15,7 @@ function uploadPhoto(data) {
         name: 'file',
         formData: {
           'token': data.uptoken,
-          'key': data.key
+          'key': fileName
         },
         success: function (res) {
             dataObject = JSON.parse(res.data);

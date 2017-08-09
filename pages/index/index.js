@@ -19,7 +19,7 @@ Page({
       nowAge: util.calAge(config.birthday)
     })
 
-    app.getPhotoVideo(function(){
+    app.getPhotoVideo(7,0,function(){
       _this.setData({
         photoVideoList: app.photoVideoList
       })
@@ -38,7 +38,16 @@ Page({
   },
   // 上拉加载
   onReachBottom: function() {
-     console.log('circle 下一页');
+    var _this = this
+    var list = this.data.photoVideoList
+    var skipNum = list.length
+
+    app.getPhotoVideo(3,skipNum,function(){
+      _this.setData({
+        photoVideoList: _this.data.photoVideoList.concat(app.photoVideoList)
+      })
+    })
+    
   },
   // 选择照片
   didPressChooesImage:function() {
@@ -99,7 +108,7 @@ Page({
   },
   // 跳转到photoDetail页
   toPhotoDetail: function(e){
-    // getApp().doToPhotoDetail(e)
+    getApp().doToPhotoDetail(e)
   },
   // 选项弹窗
   selectBox: function(e) {
