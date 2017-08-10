@@ -1,4 +1,5 @@
 var config = require('../pages/config')
+var util = require('./util')
 // 上传照片
 function uploadPhoto(data) {
     var i=data.i ? data.i:0
@@ -23,6 +24,7 @@ function uploadPhoto(data) {
             photoArr.push(photoVideoUrl)
             success++;
             console.log("上传七牛成功",i,res)
+
         },
         fail: function (error) {
             fail++;
@@ -35,9 +37,19 @@ function uploadPhoto(data) {
             console.log('执行完毕');
             console.log('成功：'+success+" 失败："+fail);
 
+            // loading
+            data.app.index_this.setData({
+              loadingValue: true
+            })
+
             // 修改data值
             var list = data.that.data.photoVideoList;
-            list.unshift({photoVideoUrl:photoArr,type:data.type,content:data.content})
+            list.unshift({
+              photoVideoUrl:photoArr,
+              type:data.type,
+              content:data.content,
+              meta: {createAt: util.formatTime(new Date())}
+            })
 
             data.that.setData({
               photoVideoList: list
@@ -85,20 +97,29 @@ function uploadVideo(data) {
           videoInfo.app = data.app
 
           var list = data.that.data.photoVideoList
-          list.unshift({photoVideoUrl:photoVideoUrl,type:data.type,content:data.content,thumbnailUrl:videoInfo.thumbnailUrl})
+          list.unshift({
+            photoVideoUrl:photoVideoUrl,
+            type:data.type,
+            content:data.content,
+            thumbnailUrl:videoInfo.thumbnailUrl,
+            meta: {createAt: util.formatTime(new Date())}
+          })
           data.that.setData({
             photoVideoList: list
           })
           // 保存视频信息
           savePhotoVideoInfo(videoInfo,data.type,data.config)
         },
-        fail: function (error) {
+        fail: function (err) {
           console.log("上传失败");
+          data.app.index_this.setData({
+            loadingValue: true
+          })
+        },
+        complete: function() {
           // data.app.index_this.setData({
           //   loadingValue: true
           // })
-        },
-        complete: function() {
         }
     })
 }
@@ -145,13 +166,18 @@ function savePhotoVideoInfo(photoVideoInfo,type,options){
     success: function (res) {
       console.log('保存'+type+'到数据库成功')
       // 更新链接数组
-      photoVideoInfo.app.getPhotoVideo()
+      photoVideoInfo.app.getPhotoVideo(6,0)
+      // loading
       photoVideoInfo.app.index_this.setData({
         loadingValue: true
       })
     },
     fail: function (error) {
       console.log(error);
+      // loading
+      photoVideoInfo.app.index_this.setData({
+        loadingValue: true
+      })
     }
   })
 }

@@ -10,7 +10,8 @@ Page({
     nowAge: "",
     contentValue: true,
     loadingValue: true,
-    boLoadingValue: false
+    boLoadingValue: true,
+    pubtime: ""
   },
   //事件处理函数
   onLoad: function () {
@@ -19,13 +20,14 @@ Page({
     app.saveIndexThis(this)
     this.setData({
       nowAge: util.calAge(config.birthday),
+      // pubtime: util.formatTime()
       contentValue: true,
       loadingValue: true,
       boLoadingValue: true,
       addVlue: false,
     })
 
-    app.getPhotoVideo(5,0,function(){
+    app.getPhotoVideo(6,0,function(){
       _this.setData({
         photoVideoList: app.photoVideoList
       })
@@ -49,13 +51,17 @@ Page({
     var _this = this
     var list = this.data.photoVideoList
     var skipNum = list.length
-    this.setData({
-      boLoadingValue: true
-    })
-    app.getPhotoVideo(3,skipNum,function(){
+    
+    
+    app.getPhotoVideo(4,skipNum,function(){
       _this.setData({
         photoVideoList: _this.data.photoVideoList.concat(app.photoVideoList)
       })
+      if (!app.photoVideoList.length) {
+        _this.setData({
+          boLoadingValue: false
+        })
+      }
     })
   },
   // 选择照片
@@ -139,9 +145,9 @@ Page({
     })
   },
   loadingChange: function(){
-    wx.showLoading({
-      mask: false
-    })
+    // wx.showLoading({
+    //   mask: false
+    // })
   },
   toastChange: function() {
     wx.showToast({})
@@ -166,7 +172,6 @@ Page({
       contentValue: true
     })
   }
-
 });
 
 

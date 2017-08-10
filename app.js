@@ -58,6 +58,12 @@ App({
   },
   // 跳转到addPhotoPage页
   addPhotoPage: function(filePath){
+    wx.login({
+      success: function (res) {
+        console.log(res)
+      }
+    })
+
     wx.navigateTo({
       url: './addPhotoPage/addPhotoPage'
     })

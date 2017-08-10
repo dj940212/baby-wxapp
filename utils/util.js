@@ -8,7 +8,7 @@ function formatTime(date) {
   var second = date.getSeconds();
 
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
 function formatNumber(n) {
@@ -23,13 +23,12 @@ function calAge (birthday) {
     var today = Date.now()
     var interval = new Date(today - birthday)
     var yearTime = interval.getFullYear() - 1970
+    var monthTime = interval.getMonth() + 1
+    var dayTime = interval.getDate()
     var year = yearTime ? yearTime + "岁" : "" 
-    var month = interval.getMonth() + 1
-    var day = interval.getDate()
-
-    
-
-    return year + month + "个月"+ day + "天"
+    var month = monthTime ? monthTime+ "个月" : ""
+    var day = dayTime ? dayTime+"天" : ""
+    return year + month + day 
 }
 
 module.exports = {

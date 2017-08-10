@@ -10,7 +10,7 @@
   "window":{
     "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#f8f8f8",
-    "backgroundColor": "#eee",
+    "backgroundColor": "#fff",
     "navigationBarTitleText": "田京墨",
     "navigationBarTextStyle":"black",
     "enablePullDownRefresh" : true

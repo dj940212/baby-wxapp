@@ -1,7 +1,7 @@
 <view class="main" bindtouchmove="showAdd">
   <view class="container">
     <view class="photoVideoBox">
-      <view wx:for="{{photoVideoList}}" wx:for-item="item" wx:key="*this" class="item-box">
+      <view wx:for="{{photoVideoList}}" wx:for-item="item" class="item-box">
         <view class="date-box" wx:if="{{item.age || index===0}}">
           <view class="date">
           </view>
@@ -10,7 +10,7 @@
           </view>
         </view> 
         <view wx:if="{{item.type === 'photo'}}" class="photo-item" >
-          <view class="shadow" >
+          <view class="photo-wrapper" >
             <image 
               id="myimage" 
               data-id="{{item.id}}"
@@ -21,6 +21,9 @@
               bindtap="toPhotoDetail"
               style="width: 580rpx;height: 360rpx">
             </image>
+            <view class="photo-num" wx:if="{{item.photoVideoUrl.length!==1}}">
+              <view class="img-icon">{{item.photoVideoUrl.length}}</view>
+            </view>
           </view>
         </view>
         <view wx:if="{{item.type === 'video'}}"  class="video-item">
@@ -39,20 +42,22 @@
           <view class="text-icon" wx:if="{{false}}"></view>
           <view class="content-text" >{{item.content}}</view>
         </view>
+        <view class="pubtime">{{item.meta.createAt}}</view>
       </view>
       <view class="bottom-loading" wx:if="{{boLoadingValue}}">
         加载中...
       </view>  
     </view>
   </view>
-  <view class="add" wx:if="{{true}}" >
-    <view class="addIcon" bindtap="showAddItem"></view>
-    <view class="addPhoto" bindtap='didPressChooesImage' wx:if="{{addVlue}}"></view>
-    <view class="addVideo" bindtap='didPressChooesVideo' wx:if="{{addVlue}}"></view>  
+  <view class="add" >
+    <view class="addItem addIcon" bindtap="showAddItem">+</view>
+    <view class="addItem addPhoto" bindtap='didPressChooesImage' wx:if="{{addVlue}}"></view>
+    <view class="addItem addVideo" bindtap='didPressChooesVideo' wx:if="{{addVlue}}"></view>
+    <view class="addItem addMessage" bindtap='didPressChooesVideo' wx:if="{{addVlue}}"></view>  
   </view>
   <view>
-    <loading hidden="{{false}}" bindchange="loadingChange">上传中...</loading>
-    <toast hidden="{{true}}" duration="3000" bindchange="toast2Change">上传失败...
+    <loading hidden="{{loadingValue}}" bindchange="loadingChange">上传中...</loading>
+    <toast hidden="{{true}}" duration="3000" bindchange="toastChange">上传失败...
     </toast>
   </view>
   
