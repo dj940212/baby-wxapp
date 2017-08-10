@@ -157,6 +157,17 @@ Page({
     this.setData({
       addVlue : !this.data.addVlue
     })
+    // 登录获取用户信息
+    wx.login({
+      success: function (res) {
+        console.log(res.code)
+        wx.getUserInfo({
+          success: function (res) {
+            console.log(res.userInfo)
+          }
+        })
+      }
+    })
   },
   showAdd: function(e){
     // console.log("touches",e.touches)
