@@ -69,6 +69,15 @@ Page({
       }
     })
   },
+  // 分享
+  onShareAppMessage :function() {
+    return {
+      title: "田京墨的时光小屋",
+      success: function(res){
+        console.log("转发成功")
+      }
+    }
+  },
   // 选择照片
   didPressChooesImage:function() {
     var that = this
