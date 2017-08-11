@@ -6,22 +6,71 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
   },
-  getUserInfo:function(cb){
-    var that = this;
-    if(this.globalData.userInfo){
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
+  // 登录
+  getLogin:function(){
+    var that = this
       //调用登录接口
       wx.login({
-        success: function () {
+        success: function (response) {
+          that.globalData.jscode = response.code
+          console.log(response.code)
           wx.getUserInfo({
             success: function (res) {
-              that.globalData.userInfo = res.userInfo;
-              typeof cb == "function" && cb(that.globalData.userInfo)
+              that.globalData.nickName = res.userInfo.nickName;
+              wx.setStorageSync("nickName", res.userInfo.nickName)
+              console.log(res.userInfo.nickName)
+
+              wx.request({
+                url: config.getOpenidUrl,
+                method: "POST",
+                data: {
+                  jscode: that.globalData.jscode,
+                  nickName: that.globalData.nickName
+                },
+                success: function(res){
+                  console.log(res.data)
+                  wx.setStorageSync("openid", res.data.openid)
+
+                  console.log("登录成功")
+                }
+              })
             }
           })
         }
       });
+  },
+  // 检查权限
+  checkAuth: function(cb){
+    // 微信 API 选文件
+    var that = this
+    var lcoalOpenid = wx.getStorageSync("openid")
+    if (lcoalOpenid) {
+      console.log("本地有openid")
+      wx.request({
+        url: config.getAuthorizationUrl,
+        method: "POST",
+        data: {
+          openid: lcoalOpenid
+        },
+        success: function(res){
+          if (res.data.errNum) {
+            cb && cb()
+          }else{
+            console.log(res.data.msg)
+            that.index_this.setData({
+              modalValue : false
+            }) 
+          }
+          
+        }
+      })
+      
+    }else{
+      console.log("没找到openid,请登录")
+      that.index_this.setData({
+        modalValue2 : false
+      })
+      // this.getLogin()
     }
   },
   // 获取照片视频列表
@@ -31,7 +80,6 @@ App({
       url: config.getPhotoVideoUrl,
       method: 'GET',
       data: {
-        accessToken: config.accessToken,
         count: count && count,
         skipNum: skipNum && skipNum
       },
@@ -76,14 +124,23 @@ App({
     this.index_this = _this
   },
   globalData:{
-    userInfo:null
+    nickName:null,
+    jscode:""
   },
   photoVideoList: [],
   photoVideoIndex: null,
   photoFilePath:{},
   videoFilePath:{},
   test: 123,
-  index_this:{}
+  index_this:{},
+  relative: {
+    "Promise": "小舅",
+    "佳佳":"妈妈",
+    "无心": "爸爸",
+    "丁丁": "小姨",
+    "晓川": "外婆",
+    "丁学贵": "姥爷"
+  }
 
 })
 

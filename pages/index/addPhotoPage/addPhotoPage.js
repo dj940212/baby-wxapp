@@ -63,6 +63,13 @@ Page({
   },
   // 获取文字类容
   getContent: function(e) {
-    this.setData({ content: e.detail.value})
+    var user = app.relative[wx.getStorageSync("nickName")]
+    console.log(user)
+    if (user && e.detail.value) {
+      this.setData({ content:user+": "+ e.detail.value})
+    }else{
+      this.setData({ content: e.detail.value})
+    }
+    
   }
 })

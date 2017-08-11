@@ -11,7 +11,10 @@ Page({
     contentValue: true,
     loadingValue: true,
     boLoadingValue: true,
-    pubtime: ""
+    pubtime: "",
+    modalValue: true,
+    modalValue2: true,
+    toastValue: false
   },
   //事件处理函数
   onLoad: function () {
@@ -20,11 +23,13 @@ Page({
     app.saveIndexThis(this)
     this.setData({
       nowAge: util.calAge(config.birthday),
-      // pubtime: util.formatTime()
       contentValue: true,
       loadingValue: true,
       boLoadingValue: true,
       addVlue: false,
+      modalValue: true,
+      modalValue2: true,
+      toastValue: true
     })
 
     app.getPhotoVideo(6,0,function(){
@@ -66,60 +71,65 @@ Page({
   },
   // 选择照片
   didPressChooesImage:function() {
-    // 微信 API 选文件
     var that = this
-    wx.chooseImage({
-      // count: 2,
-      success: function (res) {
-        var filePath = res.tempFilePaths;
-        console.log("选择文件",res)
-        // 跳转到编辑页
-        app.addPhotoPage(filePath)
-      }
+    app.checkAuth(function(){
+      wx.chooseImage({
+        success: function (res) {
+          var filePath = res.tempFilePaths;
+          // 跳转到编辑页
+          app.addPhotoPage(filePath)
+        }
+      })
     })
+    
   },
   // 选择视频
   didPressChooesVideo:function() {
     var that = this
-    wx.chooseVideo({
-      sourceType: ['album','camera'],
-      maxDuration: 20,
-      camera: 'back',
-      success: function(res) {
-        var filePath = res.tempFilePath;
-        console.log(filePath)
-        // 跳转到编辑页
-        app.addVideoPage(filePath)
-      }
+    app.checkAuth(function(){
+      wx.chooseVideo({
+        sourceType: ['album','camera'],
+        maxDuration: 20,
+        camera: 'back',
+        success: function(res) {
+          var filePath = res.tempFilePath;
+          console.log(filePath)
+          // 跳转到编辑页
+          app.addVideoPage(filePath)
+        }
+      })
     })
+    
   },
   // 删除文件
   deletePhotoOrVideo: function(e){
     var _this = this
-    console.log(e.currentTarget.dataset.index)
-    var id = e.currentTarget.dataset.id
-    var index = e.currentTarget.dataset.index
-    console.log("id",id)
-    console.log("index",index)
+    app.checkAuth(function(){
+      var id = e.currentTarget.dataset.id
+      var index = e.currentTarget.dataset.index
+      console.log("id",id)
+      console.log("index",index)
 
-    wx.request({
-      url: config.deletePhotoOrVideoUrl,
-      method: 'POST',
-      data: {
-        accessToken: config.accessToken,
-        id:id
-      },
-      success: function(res) {
-        console.log("删除成功")
-      }
+      wx.request({
+        url: config.deletePhotoOrVideoUrl,
+        method: 'POST',
+        data: {
+          accessToken: config.accessToken,
+          id:id
+        },
+        success: function(res) {
+          console.log("删除成功")
+        }
+      })
+      var arr = _this.data.photoVideoList
+      console.log("arr1",arr)
+      arr.splice(index,1)
+      console.log("arr2",arr)
+      _this.setData({
+        photoVideoList:arr
+      })
     })
-    var arr = this.data.photoVideoList
-    console.log("arr1",arr)
-    arr.splice(index,1)
-    console.log("arr2",arr)
-    this.setData({
-      photoVideoList:arr
-    })
+    
   },
   // 跳转到photoDetail页
   toPhotoDetail: function(e){
@@ -157,20 +167,7 @@ Page({
     this.setData({
       addVlue : !this.data.addVlue
     })
-    // 登录获取用户信息
-    wx.login({
-      success: function (res) {
-        console.log(res.code)
-        wx.getUserInfo({
-          success: function (res) {
-            console.log(res.userInfo)
-          }
-        })
-      }
-    })
-  },
-  showAdd: function(e){
-    // console.log("touches",e.touches)
+    
   },
   hideContent: function(e){
     this.setData({
@@ -181,6 +178,27 @@ Page({
   showContent: function(){
     this.setData({
       contentValue: true
+    })
+  },
+  modalChange: function(e){
+    console.log(e)
+    this.setData({
+      modalValue: true
+    })
+  },
+  clearStorage:function(){
+    wx.clearStorageSync()
+    console.log("清楚本地数据")
+  },
+  modalConfirm2: function() {
+    app.getLogin()
+    this.setData({
+      modalValue2: true
+    })
+  },
+  modalCancel: function() {
+    this.setData({
+      modalValue2: true
     })
   }
 });

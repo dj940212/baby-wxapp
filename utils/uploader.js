@@ -19,6 +19,7 @@ function uploadPhoto(data) {
           'key': fileName
         },
         success: function (res) {
+            console.log(res.data)
             dataObject = JSON.parse(res.data);
             var photoVideoUrl = data.config.domain +'/'+ dataObject.key;
             photoArr.push(photoVideoUrl)
@@ -41,6 +42,13 @@ function uploadPhoto(data) {
             data.app.index_this.setData({
               loadingValue: true
             })
+
+            // // toast
+            // if (!success) {
+            //   data.app.index_this.setData({
+            //     toastValue: true
+            //   })
+            // }
 
             // 修改data值
             var list = data.that.data.photoVideoList;
@@ -88,7 +96,7 @@ function uploadVideo(data) {
           'key': data.key
         },
         success: function (res) {
-          console.log(res)
+          console.log(res.data)
           videoInfo = JSON.parse(res.data);
           photoVideoUrl = data.config.domain +'/'+ videoInfo.key;
           videoInfo.photoVideoUrl = photoVideoUrl
@@ -111,15 +119,15 @@ function uploadVideo(data) {
           savePhotoVideoInfo(videoInfo,data.type,data.config)
         },
         fail: function (err) {
-          console.log("上传失败");
+          // toast
+          // data.app.index_this.setData({
+          //   toastValue: true
+          // })
+        },
+        complete: function() {
           data.app.index_this.setData({
             loadingValue: true
           })
-        },
-        complete: function() {
-          // data.app.index_this.setData({
-          //   loadingValue: true
-          // })
         }
     })
 }

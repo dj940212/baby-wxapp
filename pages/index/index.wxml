@@ -53,12 +53,20 @@
     <view class="addItem addIcon" bindtap="showAddItem">+</view>
     <view class="addItem addPhoto" bindtap='didPressChooesImage' wx:if="{{addVlue}}"></view>
     <view class="addItem addVideo" bindtap='didPressChooesVideo' wx:if="{{addVlue}}"></view>
-    <view class="addItem addMessage" bindtap='didPressChooesVideo' wx:if="{{addVlue}}"></view>  
+    <view class="addItem addMessage" bindlongtap='clearStorage' wx:if="{{addVlue}}"></view>  
   </view>
   <view>
     <loading hidden="{{loadingValue}}" bindchange="loadingChange">上传中...</loading>
-    <toast hidden="{{true}}" duration="3000" bindchange="toastChange">上传失败...
-    </toast>
+    <toast hidden="{{toastValue}}" duration="1" bindchange="toastChange">上传失败</toast>
+    <modal hidden="{{modalValue}}" no-cancel bindconfirm="modalChange">
+      你没有操作权限,如有需要，请联系开发者
+    </modal>
+    <modal hidden="{{modalValue}}" no-cancel bindconfirm="modalChange">
+      你没有操作权限,如有需要，请联系开发者
+    </modal>
+    <modal confirm-text="确定" cancel-text="取消" hidden="{{modalValue2}}" mask bindconfirm="modalConfirm2" bindcancel="modalCancel">
+      此操作需登录，是否登录？
+    </modal>
   </view>
   
 </view>
