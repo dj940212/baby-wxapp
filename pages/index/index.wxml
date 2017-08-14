@@ -1,4 +1,4 @@
-<view class="main" bindtouchmove="showAdd">
+<view class="main">
   <view class="container">
     <view class="photoVideoBox">
       <view wx:for="{{photoVideoList}}" wx:for-item="item" class="item-box">
@@ -58,9 +58,6 @@
   <view>
     <loading hidden="{{loadingValue}}" bindchange="loadingChange">上传中...</loading>
     <toast hidden="{{toastValue}}" duration="1" bindchange="toastChange">上传失败</toast>
-    <modal hidden="{{modalValue}}" no-cancel bindconfirm="modalChange">
-      你没有操作权限,如有需要，请联系开发者
-    </modal>
     <modal hidden="{{modalValue}}" no-cancel bindconfirm="modalChange">
       你没有操作权限,如有需要，请联系开发者
     </modal>

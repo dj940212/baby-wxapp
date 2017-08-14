@@ -163,11 +163,6 @@ Page({
       }
     })
   },
-  loadingChange: function(){
-    // wx.showLoading({
-    //   mask: false
-    // })
-  },
   toastChange: function() {
     wx.showToast({})
   },

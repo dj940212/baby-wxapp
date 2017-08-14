@@ -15,7 +15,7 @@
             </view>
           </view>
           <view class="publish-wrapper" bindtap="publishPhoto">
-            <button class="publish-btn" type="primary" size="default" loading="{{false}}" plain="{{flase}}" disabled="{{false}}" bindtap="primary"> 发 布 </button>
+            <button class="publish-btn" type="primary" size="default" loading="{{false}}" plain="{{flase}}" disabled="{{false}}"> 发 布 </button>
           </view>
         </view>
     </view>
