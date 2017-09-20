@@ -1,15 +1,35 @@
-## 预览 
-为家里的小盆友开发的微信小程序，以年龄为时间线展示图片视频列表，可以发布照片，小视频
+## 宝宝的时光小屋
+
+> 一个微信小程序相册,用来记录宝宝成长中的每一个瞬间
+
+
 ![](http://oupfkjs5r.bkt.clouddn.com/gh_262be9a97cb2_258.jpg)
 ## 启动项目
-+ 克隆
-```
-git@github.com:dj940212/baby-wxapp.git
-```
-+ 运行
-```
-在微信小程序开发工具打开文件
-```
+#### 克隆
+
+> git@github.com:dj940212/baby-wxapp.git
+
+##### 运行
+
+> 使用微信小程序开发工具运行项目,具体见 [微信小程序开发工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/devtools.html)
 
 
-![](http://oupfkjs5r.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170815101129.jpg)
+
+## 功能预览
+
+![](http://image.dingjian.name/blog/170920/3JG9e6HDF9.gif)
+
+
+![](http://image.dingjian.name/blog/170920/G8lcad0iAi.jpg?imageslim)
+
+---- 
+
+## 预计实现功能
+
+-[x] 发布照片,小视频
+-[x] 照片,视频发布添加文本
+-[x] 删除照片,视频
+-[x] 显示当前年龄,发布时间
+-[ ] 留言板
+-[ ] 保存到本地
+
