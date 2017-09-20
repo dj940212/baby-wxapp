@@ -1,6 +1,8 @@
 ## 宝宝的时光小屋
 
 > 一个微信小程序相册,用来记录宝宝成长中的每一个瞬间
+>
+> 小外甥女去年出生,给她做个小程序来存放她的照片视频
 
 
 ![](http://oupfkjs5r.bkt.clouddn.com/gh_262be9a97cb2_258.jpg)
@@ -22,7 +24,7 @@
 
 ![](http://image.dingjian.name/blog/170920/G8lcad0iAi.jpg?imageslim)
 
----- 
+----
 
 ## 预计实现功能
 
