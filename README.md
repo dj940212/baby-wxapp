@@ -19,7 +19,7 @@
 
 ## 功能预览
 
-![](http://image.dingjian.name/blog/170920/3JG9e6HDF9.gif)
+![](http://image.dingjian.name/blog/170920/60e552K4a2.gif)
 
 
 ![](http://image.dingjian.name/blog/170920/G8lcad0iAi.jpg?imageslim)
