@@ -15,12 +15,7 @@
 
 > 使用微信小程序开发工具运行项目,具体见 [微信小程序开发工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/devtools.html)
 
-
-
 ## 功能预览
-
-![](http://image.dingjian.name/blog/170920/60e552K4a2.gif)
-
 
 ![](http://image.dingjian.name/blog/170920/G8lcad0iAi.jpg?imageslim)
 
