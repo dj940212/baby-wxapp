@@ -31,7 +31,7 @@
   font-size: 32rpx;
   font-weight: bold;
   line-height: 35rpx;
-  color: rgba(255,255,255,0.8);
+  color: #fff;
   background: url(http://otdcrqlvr.bkt.clouddn.com/%E5%9B%BE%E7%89%87%20%281%29.png);
   background-position: 30rpx 0;
   background-size: 35rpx 35rpx;
@@ -85,6 +85,22 @@ video{
   background-size: contain;
   background-color: rgba(0,0,0,0);
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.27), 0 0 120rpx rgba(0, 0, 0, 0.1) inset;
+}
+.videoPoster {
+  position: relative;
+}
+.playIcon {
+  width: 50rpx;
+  height: 50rpx;
+  background-image: url(http://image.dingjian.name/blog/171011/h9A54LH4c8.png?imageslim);
+  background-size: 50rpx 50rpx;
+  position: absolute;
+  z-index: 20;
+  margin:auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .add {
   z-index: 11;

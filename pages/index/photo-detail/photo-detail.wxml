@@ -8,7 +8,7 @@
         interval="{{interval}}" 
         duration="{{duration}}"
         style="height: {{swiperHeight}}px">
-        <block wx:for="{{imgUrls}}">
+        <block wx:for="{{imgUrls}}" wx:key wx:for-item="item">
           <swiper-item class="swiper-box">
             <image src="{{item}}" class="swiper-item" mode="widthFix" bindtap="back"></image>
           </swiper-item>

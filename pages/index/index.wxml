@@ -1,7 +1,7 @@
 <view class="main">
   <view class="container">
     <view class="photoVideoBox">
-      <view wx:for="{{photoVideoList}}" wx:for-item="item" class="item-box">
+      <view wx:for="{{photoVideoList}}" wx:key wx:for-item="item" wx:for-index="index" class="item-box">
         <view class="date-box" wx:if="{{item.age || index===0}}">
           <view class="date">
           </view>
@@ -19,7 +19,7 @@
               src="{{item.photoVideoUrl[0]}}" 
               bindlongtap="selectBox"
               bindtap="toPhotoDetail"
-              style="width: 580rpx;height: 360rpx">
+              style="width: 580rpx;height: 360rpx;">
             </image>
             <view class="photo-num" wx:if="{{item.photoVideoUrl.length!==1}}">
               <view class="img-icon">{{item.photoVideoUrl.length}}</view>
@@ -28,15 +28,36 @@
         </view>
         <view wx:if="{{item.type === 'video'}}"  class="video-item">
           <video  
-            id="myVideo" 
+            id="video_{{index}}" 
             src="{{item.photoVideoUrl}}" 
             data-id="{{item.id}}"
             data-index="{{index}}" 
             bindlongtap="selectBox"
             style="width: 580rpx;height: 360rpx" 
             objectFit="cover" 
-            poster="{{item.thumbnailUrl}}">
+            hidden = "{{currentId !== item.id}}"
+            bindended = "endedHandle">
           </video>
+          <view class="videoPoster">
+            <image 
+              id="poster" 
+              data-id="{{item.id}}"
+              data-index="{{index}}" 
+              mode="aspectFill"  
+              src="{{item.thumbnailUrl}}" 
+              bindlongtap="selectBox"
+              bindtap="palyVideo"
+              style="width: 580rpx;height: 360rpx ;"
+              hidden = "{{currentId === item.id}}">
+            </image>
+            <view 
+              class="playIcon" 
+              data-index="{{index}}" 
+              data-id="{{item.id}}" 
+              bindtap="palyVideo"
+              hidden = "{{currentId === item.id}}">
+            </view>
+          </view>
         </view>
         <view class="content" wx:if="{{contentValue}}">
           <view class="text-icon" wx:if="{{false}}"></view>
@@ -59,10 +80,7 @@
     <loading hidden="{{loadingValue}}" bindchange="loadingChange">上传中...</loading>
     <toast hidden="{{toastValue}}" duration="1" bindchange="toastChange">上传失败</toast>
     <modal hidden="{{modalValue}}" no-cancel bindconfirm="modalChange">
-      你没有操作权限,如有需要，请联系开发者
-    </modal>
-    <modal confirm-text="确定" cancel-text="取消" hidden="{{modalValue2}}" mask bindconfirm="modalConfirm2" bindcancel="modalCancel">
-      此操作需登录，是否登录？
+      你没有权限,请联系wx:DJ940212
     </modal>
   </view>
   

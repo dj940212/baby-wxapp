@@ -43,13 +43,6 @@ function uploadPhoto(data) {
               loadingValue: true
             })
 
-            // // toast
-            // if (!success) {
-            //   data.app.index_this.setData({
-            //     toastValue: true
-            //   })
-            // }
-
             // 修改data值
             var list = data.that.data.photoVideoList;
             list.unshift({
@@ -120,14 +113,14 @@ function uploadVideo(data) {
         },
         fail: function (err) {
           // toast
-          // data.app.index_this.setData({
-          //   toastValue: true
-          // })
+          data.app.index_this.setData({
+            toastValue: false
+          })
         },
         complete: function() {
-          data.app.index_this.setData({
-            loadingValue: true
-          })
+          // data.app.index_this.setData({
+          //   loadingValue: true
+          // })
         }
     })
 }

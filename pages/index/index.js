@@ -12,9 +12,10 @@ Page({
     loadingValue: true,
     boLoadingValue: true,
     pubtime: "",
+    showVideo: false,
     modalValue: true,
-    modalValue2: true,
-    toastValue: false
+    toastValue: true,
+    currentId: "",
   },
   //事件处理函数
   onLoad: function () {
@@ -28,8 +29,8 @@ Page({
       boLoadingValue: true,
       addVlue: false,
       modalValue: true,
-      modalValue2: true,
-      toastValue: true
+      toastValue: true,
+      currentId: ""
     })
 
     app.getPhotoVideo(6,0,function(){
@@ -37,10 +38,8 @@ Page({
         photoVideoList: app.photoVideoList
       })
       wx.stopPullDownRefresh()
-    }) 
-  },
-  onReady: function (res) {
-    this.videoContext = wx.createVideoContext('myVideo')
+    })
+
   },
   onPageScroll: function() {
     this.setData({
@@ -78,6 +77,16 @@ Page({
       }
     }
   },
+  palyVideo: function(e) {
+    var id = 'video_'+ e.target.dataset.index
+    console.log(id,e)
+    this.setData({currentId: e.target.dataset.id})
+    this.videoContext = wx.createVideoContext(id)
+    this.videoContext.play()
+  },
+  endedHandle: function() {
+    this.setData({currentId: ''})
+  },
   // 选择照片
   didPressChooesImage:function() {
     var that = this
@@ -90,7 +99,6 @@ Page({
         }
       })
     })
-    
   },
   // 选择视频
   didPressChooesVideo:function() {
@@ -108,7 +116,6 @@ Page({
         }
       })
     })
-    
   },
   // 删除文件
   deletePhotoOrVideo: function(e){
@@ -138,7 +145,6 @@ Page({
         photoVideoList:arr
       })
     })
-    
   },
   // 跳转到photoDetail页
   toPhotoDetail: function(e){
@@ -155,7 +161,8 @@ Page({
       success: function(res) {
         console.log(res.tapIndex)
         if (res.tapIndex===0) {
-          that.deletePhotoOrVideo(e)
+          // that.deletePhotoOrVideo(e)
+          console.log("关闭删除")
         }
       },
       fail: function(res) {
@@ -193,12 +200,6 @@ Page({
   clearStorage:function(){
     wx.clearStorageSync()
     console.log("清楚本地数据")
-  },
-  modalConfirm2: function() {
-    app.getLogin()
-    this.setData({
-      modalValue2: true
-    })
   },
   modalCancel: function() {
     this.setData({

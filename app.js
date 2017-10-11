@@ -67,10 +67,7 @@ App({
       
     }else{
       console.log("没找到openid,请登录")
-      that.index_this.setData({
-        modalValue2 : false
-      })
-      // this.getLogin()
+      this.getLogin()
     }
   },
   // 获取照片视频列表
