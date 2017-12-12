@@ -17,7 +17,7 @@
 
 ## 功能预览
 
-![](http://image.dingjian.name/blog/170920/G8lcad0iAi.jpg?imageslim)
+![](http://ovs5x36k4.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171212220320.jpg)
 
 ----
 
