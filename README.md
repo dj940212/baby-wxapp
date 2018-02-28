@@ -4,8 +4,6 @@
 >
 > 小外甥女去年出生,给她做个小程序来存放她的照片视频
 
-
-![](http://oupfkjs5r.bkt.clouddn.com/gh_262be9a97cb2_258.jpg)
 ## 启动项目
 #### 克隆
 
