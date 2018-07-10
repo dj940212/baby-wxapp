@@ -17,7 +17,7 @@ git clone git@github.com:dj940212/baby-wxapp.git
 
 ## 功能预览
 
-![](http://image.dingjian.name/333.jpeg?imageView2/2/w/400)
+![](http://image.dingjian.name/333.jpeg)
 
 ----
 
